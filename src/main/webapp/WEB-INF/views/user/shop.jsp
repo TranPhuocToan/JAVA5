@@ -665,17 +665,17 @@
 
 
     <!-- JavaScript Libraries -->
-    <script src="../assets/https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="../assets/https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/lib/easing/easing.min.js"></script>
-    <script src="../assets/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/user/lib/easing/easing.min.js"></script>
+    <script src="../assets/user/lib/owlcarousel/owl.carousel.min.js"></script>
 
     <!-- Contact Javascript File -->
-    <script src="../assets/mail/jqBootstrapValidation.min.js"></script>
-    <script src="../assets/mail/contact.js"></script>
+    <script src="../assets/user/mail/jqBootstrapValidation.min.js"></script>
+    <script src="../assets/user/mail/contact.js"></script>
 
     <!-- Template Javascript -->
-    <script src="../assets/js/main.js"></script>
+    <script src="../assets/user/js/main.js"></script>
 </body>
 
 </html>
