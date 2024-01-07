@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!-- Navbar Start -->
 <div class="container-fluid bg-dark mb-30">
     <div class="row px-xl-5">
@@ -16,8 +18,8 @@
                             <a href="" class="dropdown-item">Baby's Dresses</a>
                         </div>
                     </div>
-                    <a href="" class="nav-item nav-link">Shirts</a>
-                    <a href="" class="nav-item nav-link">Jeans</a>
+                    <a href="" class="nav-item nav-link">Giày sneaker nam</a>
+                    <a href="" class="nav-item nav-link">Giày Sandal nam</a>
                     <a href="" class="nav-item nav-link">Swimwear</a>
                     <a href="" class="nav-item nav-link">Sleepwear</a>
                     <a href="" class="nav-item nav-link">Sportswear</a>
