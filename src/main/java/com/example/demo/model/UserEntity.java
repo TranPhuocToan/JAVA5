@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,13 +26,14 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer userId;
-    @NotBlank(message = "khong để tróng")
+    @NotBlank(message = "User name không thể để tróng !")
     String userName;
-    @NotBlank(message = "khong để tróng")
+    @NotBlank(message = "Full name không thể để tróng !")
     String fullName;
-    @NotBlank(message = "khong để tróng")
+    @NotBlank(message = "Password không thể để tróng !")
     String passWord;
-    @NotBlank(message = "khong để tróng")
+    @Email(message = "Email không đúng định dạng !")
+    @NotBlank(message = "Email không thê để trong !")
     String email;
 
     @JsonIgnore
