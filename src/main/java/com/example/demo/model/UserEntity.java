@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,9 +25,13 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer userId;
+    @NotBlank(message = "khong để tróng")
     String userName;
+    @NotBlank(message = "khong để tróng")
     String fullName;
+    @NotBlank(message = "khong để tróng")
     String passWord;
+    @NotBlank(message = "khong để tróng")
     String email;
 
     @JsonIgnore

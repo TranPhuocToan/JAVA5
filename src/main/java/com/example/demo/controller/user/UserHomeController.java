@@ -8,28 +8,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/user")
 public class UserHomeController {
     @GetMapping("/index")
-    public String index(){
+    public String index() {
         return "user/index";
     }
+
     @GetMapping("/shop")
-    public String shop(){
+    public String shop() {
         return "user/shop";
     }
+
     @GetMapping("/detail")
-    public String detail(){
+    public String detail() {
         return "user/detail";
     }
+
     @GetMapping("/cart")
-    public String cart(){
+    public String cart() {
         return "user/cart";
     }
 
     @GetMapping("/login")
-    public String Login(){
+    public String Login() {
         return "user/login";
     }
+
     @GetMapping("/register")
-    public String register(){
+    public String register() {
         return "user/register";
+    }
+
+    @GetMapping("/order")
+    public String cartdetail() {
+        return "user/order";
+    }
+
+    @GetMapping("/account")
+    public String account() {
+        return "user/accountInfo";
     }
 }

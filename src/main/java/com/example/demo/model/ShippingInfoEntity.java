@@ -23,6 +23,7 @@ public class ShippingInfoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer shippingId;
+    String shippingName;
     String shippingAddress;
     Number shippingSdt;
 
