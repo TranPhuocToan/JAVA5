@@ -12,13 +12,28 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.model.UserEntity;
+import com.example.demo.repository.UserEntityDAO;
 import com.example.demo.service.ParamService;
+import com.example.demo.service.UserService;
 
 @Controller
 @RequestMapping("/account")
 public class UserAccountController {
     @Autowired
     ParamService paramService;
+    @Autowired
+    UserEntityDAO userDao;
+
+    @GetMapping("/login")
+    public String LoginForm() {
+        return "user/login";
+    }
+
+    @PostMapping("/login")
+    public String LoginForm(Model model) {
+
+        return "user/login";
+    }
 
     @GetMapping("/register")
     public String registerForm(@ModelAttribute("user") UserEntity us, Model model) {
@@ -35,6 +50,7 @@ public class UserAccountController {
             model.addAttribute("message_cf", "Xác nhận mật khẩu không khớp");
             return "user/register";
         }
+        userDao.save(us);
         return "user/login";
     }
 }

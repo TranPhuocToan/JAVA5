@@ -46,24 +46,52 @@
                             <%@include file="../../views/user/common/_accountList.jsp" %>
                         </div>
                         <div class="col-lg-9 mb-5">
-                            <div class="row">
-                                <div class="col-md-6 form-group">
-                                    <label>First Name</label>
-                                    <input class="form-control" type="text" placeholder="John">
-                                </div>
-
-                                <div class="col-md-6 form-group">
-                                    <label>E-mail</label>
-                                    <input class="form-control" type="text" placeholder="example@email.com">
-                                </div>
-                                <button style="
-                                border: none; 
-                                margin: 18px;
-                                border-radius: 10px;
-                                padding: 10px;
-                                background-color: #ffd333;
-                                ">Cập nhật</button>
-                            </div>
+                            <table class="table table-light table-borderless table-hover text-center mb-0">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Mã hàng</th>
+                                        <th>Ngày đặt</th>
+                                        <th>Giá</th>
+                                        <th>Trạng thái</th>
+                                        <th>Hoạt động</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="align-middle">
+                                    <tr>
+                                        <td class="align-middle">1</td>
+                                        <td class="align-middle">12312</td>
+                                        <td class="align-middle">01/01/2003</td>
+                                        <td class="align-middle">500.000 VNĐ</td>
+                                        <td class="align-middle"><span style="
+                            padding: 10px 20px;
+                            background-color: rgb(217, 205, 30);
+                            color: white;
+                            border-radius: 20px;
+                            ">Đang chờ</span></td>
+                                        <td class="align-middle">
+                                            <a href="" type="button" class="btn btn-outline-warning">HÓA ĐƠN</a>
+                                            <a href="" type="button" class="btn btn-outline-warning">HỦY</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="align-middle">2</td>
+                                        <td class="align-middle">12312</td>
+                                        <td class="align-middle">01/01/2003</td>
+                                        <td class="align-middle">500.000 VNĐ</td>
+                                        <td class="align-middle"><span style="
+                            padding: 10px 20px;
+                            background-color: rgb(30, 217, 70);
+                            color: white;
+                            border-radius: 20px;
+                            ">ĐÃ XÁC NHẬN</span></td>
+                                        <td class="align-middle">
+                                            <a href="" type="button" class="btn btn-outline-warning">HÓA ĐƠN</a>
+                                            <a href="" type="button" class="btn btn-outline-warning">HỦY</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

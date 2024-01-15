@@ -48,12 +48,12 @@
                         <div class="col-lg-9 mb-5">
                             <div class="row">
                                 <div class="col-md-6 form-group">
-                                    <label>First Name</label>
+                                    <label>Mật khẩu mới</label>
                                     <input class="form-control" type="text" placeholder="John">
                                 </div>
 
                                 <div class="col-md-6 form-group">
-                                    <label>E-mail</label>
+                                    <label>Xác nhận lại mật khẩu</label>
                                     <input class="form-control" type="text" placeholder="example@email.com">
                                 </div>
                                 <button style="
