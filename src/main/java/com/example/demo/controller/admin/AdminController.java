@@ -24,10 +24,6 @@ public class AdminController {
         
     }
     
-    @GetMapping("/news-management")
-    public String ShowNewM() {
-    	return "admin/news-management";
-    }
     
     @GetMapping("/product-management")
     public String ShowPM() {
@@ -58,12 +54,7 @@ public class AdminController {
     public String ShowFD() {
     	return "admin/form-discount";
     }
-    
-    @GetMapping("/form-news")
-    public String ShowFN() {
-    	return "admin/form-news";
-    }
-    
+   
     @GetMapping("/form-oder")
     public String ShowFO() {
     	return "admin/form-oder";

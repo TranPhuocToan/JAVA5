@@ -174,19 +174,19 @@
 							</div>
 						</div>
 					</div>
-					<form:form class="row" action=""
+					<form class="row" action=""
 						  modelAttribute=""  enctype="multipart/form-data">
 						<div class="form-group col-md-4">
 							<label class="control-label">Mã sản phẩm</label>
-							<%-- <form:input path="" class="form-control"
-								readonly="" /> --%>
+							<input path="" class="form-control"
+								readonly="" />
 								<input class="form-control"
 								readonly="" />
 						</div>
 
 						<div class="form-group col-md-4">
 							<label class="control-label">Tên sản phẩm</label>
-							<%-- <form:input path="" class="form-control" /> --%>
+							<input path="" class="form-control" /> --%>
 							<input class="form-control"
 								readonly="" />
 						</div>
@@ -194,31 +194,31 @@
 
 						<div class="form-group  col-md-4">
 							<label class="control-label">Số lượng tồn kho</label>
-							<%-- <form:input path="" class="form-control"
+							<input path="" class="form-control"
 								type="number" /> --%>
 								<input class="form-control"
 								type="number" />
 						</div>
 						<div class="form-group col-md-4">
 							<label for="category_id">Danh mục</label>
-							<%-- <form:select path="categories.category_id" class="form-control">
-								<form:options items="${categoryIds}" />
-							</form:select> --%>
+							<select path="categories.category_id" class="form-control">
+								<options items="${categoryIds}" />
+							</select>
 							<select>
 							<option items="">
 							</select>
 						</div>
 						<div class="form-group col-md-4">
 							<label class="control-label">Giá bán</label>
-							<%-- <form:input path="product_price" class="form-control"
-								type="number" /> --%>
+							<input path="product_price" class="form-control"
+								type="number" />
 								<input class="form-control"
 								type="number" />
 						</div>
 						<div class="form-group col-md-4">
 							<label class="control-label">Giá vốn</label>
-							<%-- <form:input path="capital_price" class="form-control"
-								type="number" /> --%>
+							<input path="capital_price" class="form-control"
+								type="number" />
 								<input class="form-control"
 								type="number" />
 						</div>
@@ -229,7 +229,7 @@
 
 						<div class="form-group col-md-12">
 							<label class="control-label">Mô tả sản phẩm</label>
-							<%-- <form:textarea class="form-control" path="description" rows="5"/> --%>
+							<textarea class="form-control" path="description" rows="5"/>
 							<textarea rows="1"></textarea>
 						</div>
 
@@ -238,7 +238,7 @@
 							<a class="btn btn-cancel" href="/product">Hủy bỏ</a>
 						</div>s
 						<h1>${message}</h1>
-					</form:form>
+					</form>
 
 				</div>
 			</div>
@@ -257,7 +257,7 @@
 			<div class="modal-content">
 
 				<div class="modal-body">
-					<form action=""  modelAttribute="1">
+					<form action=""  modelAttribute=""
 						method="post">
 						<div class="row">
 							<div class="form-group  col-md-12">

@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
   <!-- Main CSS-->
-  <link rel="stylesheet" type="text/css" href="<c:url value='/css/main.css'/>"/>
+  <link rel="stylesheet" type="text/css" href="<c:url value='../assets/admin/css/main.css'/>"/>
   <!-- Font-icon css-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
   <!-- or -->
@@ -18,7 +18,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
   <link rel="stylesheet" type="text/css"
     href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
+    <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
   <script src="http://code.jquery.com/jquery.min.js" type="text/javascript"></script>
 </head>
 <body onload="time()" class="app sidebar-mini rtl">
@@ -42,27 +43,26 @@
 						<div class="row element-button">
 						</div>
 					</div>
-					<form:form class="row" action="/account"
-						modelAttribute="account">
+					<form class="row" >
 						<div class="form-group col-md-4">
 							<label class="control-label">Email</label>
-							<form:input path="email" class="form-control"
+							<input  class="form-control"
 								readonly="True" />
 						</div>
 						
-						<form:input path="password" class="form-control"
+						<input  class="form-control"
 								hidden="True" />
 						
 						<div class="form-group  col-md-4">
 						<label for="exampleSelect1" class="control-label">Phân quyền</label>
 						<div class="form-check">
-							<form:radiobutton path="role" class="form-check-input"
+							<radio class="form-check-input"
 								id="flexRadioDefault1" value="True" />
 							<label class="form-check-label" for="flexRadioDefault1">
 								Admin</label>
 						</div>
 						<div class="form-check">
-							<form:radiobutton path="role" class="form-check-input"
+							<radio class="form-check-input"
 								id="flexRadioDefault2" value="False" />
 							<label class="form-check-label" for="flexRadioDefault2">
 								Người dùng </label>
@@ -74,7 +74,7 @@
 							<!-- <button class="btn btn-save" formaction="/discount/update">Cập nhật</button> -->
 							<a class="btn btn-cancel" href="/account">Hủy bỏ</a>
 						</div>
-					</form:form>
+					</form>
 
 				</div>
 			</div>
