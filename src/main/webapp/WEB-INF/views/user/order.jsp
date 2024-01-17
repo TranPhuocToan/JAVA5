@@ -180,7 +180,7 @@
                                         <div class="custom-control custom-radio">
                                             <input type="radio" class="custom-control-input" name="payment"
                                                 id="directcheck">
-                                            <label class="custom-control-label" for="directcheck">Trược tiếp</label>
+                                            <label class="custom-control-label" for="directcheck">TRỰC TIẾP</label>
                                         </div>
                                     </div>
                                     <button class="btn btn-block btn-primary font-weight-bold py-3">ĐẶT HÀNG</button>

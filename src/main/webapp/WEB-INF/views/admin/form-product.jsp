@@ -180,47 +180,47 @@
 							<label class="control-label">Mã sản phẩm</label>
 							<input path="" class="form-control"
 								readonly="" />
-								<input class="form-control"
-								readonly="" />
+								<!-- <input class="form-control"
+								readonly="" /> -->
 						</div>
 
 						<div class="form-group col-md-4">
 							<label class="control-label">Tên sản phẩm</label>
-							<input path="" class="form-control" /> --%>
-							<input class="form-control"
-								readonly="" />
+							<input path="" class="form-control" />
+							<!-- <input class="form-control"
+								readonly="" /> -->
 						</div>
 
 
 						<div class="form-group  col-md-4">
 							<label class="control-label">Số lượng tồn kho</label>
 							<input path="" class="form-control"
-								type="number" /> --%>
-								<input class="form-control"
 								type="number" />
+								<!-- <input class="form-control"
+								type="number" /> -->
 						</div>
 						<div class="form-group col-md-4">
 							<label for="category_id">Danh mục</label>
 							<select path="categories.category_id" class="form-control">
 								<options items="${categoryIds}" />
 							</select>
-							<select>
+							<!-- <select>
 							<option items="">
-							</select>
+							</select> -->
 						</div>
 						<div class="form-group col-md-4">
 							<label class="control-label">Giá bán</label>
 							<input path="product_price" class="form-control"
 								type="number" />
-								<input class="form-control"
-								type="number" />
+								<!-- <input class="form-control"
+								type="number" /> -->
 						</div>
 						<div class="form-group col-md-4">
 							<label class="control-label">Giá vốn</label>
 							<input path="capital_price" class="form-control"
 								type="number" />
-								<input class="form-control"
-								type="number" />
+								<!-- <input class="form-control"
+								type="number" /> -->
 						</div>
 						<div class="form-group col-md-4">
 							<label class="control-label">Ảnh sản phẩm</label> <input
@@ -229,17 +229,16 @@
 
 						<div class="form-group col-md-12">
 							<label class="control-label">Mô tả sản phẩm</label>
-							<textarea class="form-control" path="description" rows="5"/>
-							<textarea rows="1"></textarea>
+							<textarea class="form-control" path="description" rows="5">
+							<!-- <textarea rows="1"></textarea> -->	
 						</div>
 
 						<div class="form-group col-md-12">
 							<button class="btn btn-save" formaction="/product/create">Lưu lại</button>
 							<a class="btn btn-cancel" href="/product">Hủy bỏ</a>
-						</div>s
+						</div>
 						<h1>${message}</h1>
 					</form>
-
 				</div>
 			</div>
 		</div>
