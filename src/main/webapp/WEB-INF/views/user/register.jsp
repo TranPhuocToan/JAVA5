@@ -127,6 +127,10 @@
           font-size: 18px;
           margin-bottom: 1px;
         }
+
+        .msg {
+          color: red;
+        }
       </style>
     </head>
 
@@ -136,19 +140,19 @@
         <p class="sub-title">Let's get statred with your 30 days free trial</p>
         <form:form class="form" action="/account/register" method="post" modelAttribute="user">
           <form:input path="userName" type="text" class="input" placeholder="User name" />
-          <form:errors path="userName"></form:errors>
+          <form:errors path="userName" cssClass="msg"></form:errors>
           <form:input path="fullName" type="text" class="input" placeholder="Full name" />
-          <form:errors path="fullName"></form:errors>
+          <form:errors cssClass="msg" path="fullName"></form:errors>
           <form:input path="email" type="email" class="input" placeholder="Email" />
-          <form:errors path="email"></form:errors>
+          <form:errors cssClass="msg" path="email"></form:errors>
           <form:input path="passWord" type="passWord" class="input" placeholder="Password" />
-          <form:errors path="passWord"></form:errors>
+          <form:errors cssClass="msg" path="passWord"></form:errors>
           <input name="cfpassword" type="password" class="input" placeholder="Confirm Password">
-          <span>${message_cf}</span>
+          <span style="color: red;">${message_cf}</span>
           <button class="form-btn" type="submit">Create account</button>
         </form:form>
         <p class="sign-up-label">
-          Already have an account?<span class="sign-up-link">Log in</span>
+          Already have an account?<a href="/account/login"><span class="sign-up-link">Sign in</span></a>
         </p>
         <div class="buttons-container">
           <div class="apple-login-button">

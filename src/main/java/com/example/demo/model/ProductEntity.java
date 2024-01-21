@@ -28,6 +28,7 @@ public class ProductEntity {
     String productName;
     Double productPrice;
     String productDescription;
+    String productImages;
 
     @JsonIgnore
     @OneToMany(mappedBy = "product")

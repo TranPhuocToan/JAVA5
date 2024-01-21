@@ -12,11 +12,6 @@ public class UserHomeController {
         return "user/index";
     }
 
-    @GetMapping("/shop")
-    public String shop() {
-        return "user/shop";
-    }
-
     @GetMapping("/detail")
     public String detail() {
         return "user/detail";
