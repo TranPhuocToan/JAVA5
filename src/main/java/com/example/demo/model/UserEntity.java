@@ -35,6 +35,7 @@ public class UserEntity {
     @Email(message = "Email không đúng định dạng !")
     @NotBlank(message = "Email không thê để trong !")
     String email;
+    Boolean userRole;
 
     @JsonIgnore
     @OneToOne(mappedBy = "user")

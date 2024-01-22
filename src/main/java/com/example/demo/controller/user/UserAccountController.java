@@ -67,6 +67,7 @@ public class UserAccountController {
             model.addAttribute("message_cf", "Xác nhận mật khẩu không khớp");
             return "user/register";
         }
+        us.setUserRole(false);
         userDao.save(us);
         return "user/login";
     }

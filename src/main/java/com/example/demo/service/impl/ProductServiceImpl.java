@@ -3,6 +3,8 @@ package com.example.demo.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.ProductEntity;
@@ -18,8 +20,8 @@ public class ProductServiceImpl implements ProductService {
     ProductEntityDAO productEntityDAO;
 
     @Override
-    public List<ProductEntity> findAll() {
-        return productEntityDAO.findAll();
+    public Page<ProductEntity> findAll(Pageable pageable) {
+        return productEntityDAO.findAll(pageable);
     }
 
     // @Override
