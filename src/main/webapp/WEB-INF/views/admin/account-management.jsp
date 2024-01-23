@@ -6,7 +6,7 @@
 
 			<head>
 				<meta charset="UTF-8">
-				<title>Insert title here</title>
+				<title>Quản Lý Tài Khoản</title>
 				<!-- Main CSS-->
 				<link rel="stylesheet" type="text/css" href="<c:url value='../assets/admin/css/main.css'/>" />
 				<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">

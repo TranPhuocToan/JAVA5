@@ -1,28 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="jakarta.tags.core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Quản Lý Sản Phẩm</title>
-<!-- Main CSS-->
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='../assets/admin/css/main.css'/>" />
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-<!-- or -->
-<link rel="stylesheet"
-	href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-<!-- Font-icon css-->
-<link rel="stylesheet" type="text/css"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Màu Sắc</title>
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="<c:url value='../assets/admin/css/main.css'/>" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <!-- or -->
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css"
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 </head>
 <body onload="time()" class="app sidebar-mini rtl">
 	<!-- Navbar-->
@@ -35,7 +33,7 @@
 		<div class="app-title">
 			<ul class="app-breadcrumb breadcrumb side">
 				<li class="breadcrumb-item active"><a href="#"><b>Danh
-							sách sản phẩm</b></a></li>
+							sách màu</b></a></li>
 			</ul>
 			<div id="clock"></div>
 		</div>
@@ -46,8 +44,8 @@
 						<div class="row element-button">
 							<div class="col-sm-2">
 
-								<a class="btn btn-add btn-sm" href="/admin/form-product"
-									title="Thêm"><i class="fas fa-plus"></i> Tạo mới sản phẩm</a>
+								<a class="btn btn-add btn-sm" href="/admin/form-color"
+									title="Thêm"><i class="fas fa-plus"></i> Tạo mới màu</a>
 							</div>
 							<div class="col-sm-2">
 								<a class="btn btn-delete btn-sm print-file" type="button"
@@ -73,29 +71,15 @@
 						<table class="table table-hover table-bordered" id="sampleTable">
 							<thead>
 								<tr>
-									<th>Mã sản phẩm</th>
-									<th>Tên sản phẩm</th>
-									<th>Mô tả</th>
-									<th>Ảnh</th>
-									<th>Số lượng tồn kho</th>
-									<th>Giá bán</th>
-									<th>Giá vốn</th>
-									<th>Danh mục</th>
-									<th>Chức năng</th>
+									<th>ID màu</th>
+									<th>Tên màu</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="product" items="${products}">
+								<c:forEach var="brand" items="${brand}">
 									<tr>
-										<td>${product.product_id}</td>
-										<td>${product.product_name}</td>
-										<td>${product.description}</td>
-										<td><img class="img-card-person"
-											src="<c:url value="/img/${product.picture}"/>" alt=""></td>
-										<td>${product.quantity_in_stock}</td>
-										<td>${product.product_price}</td>
-										<td>${product.capital_price}</td>
-										<td>${product.categories.category_name}</td>
+										<td>${brand.brand_id}</td>
+										<td>${brand.brand_name}</td>
 										<td><a class="btn btn-primary btn-sm trash" type="button"
 											title="Xóa"
 											onclick="confirmDelete('${product.product_id}')"> <i
@@ -114,7 +98,7 @@
 		</div>
 	</main>
 
--->
+
 
 	<!-- Essential javascripts for application to work-->
 	<script src="<c:url value='../assets/admin/js/jquery-3.2.1.min.js'/>"></script>

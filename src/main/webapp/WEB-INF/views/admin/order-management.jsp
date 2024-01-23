@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Quản Lý Đơn Hàng</title>
 <!-- Main CSS-->
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='../assets/admin/css/main.css'/>" />

@@ -18,12 +18,29 @@ public class AdminController {
     	return "admin/account-management";
     }
     
-    @GetMapping("/oder-management")
+    @GetMapping("/order-management")
     public String ShowOrder() {
-        return "admin/oder-management";
+        return "admin/order-management";
         
     }
     
+    @GetMapping("/Color-management")
+    public String ShowColor() {
+        return "admin/Color-management";
+        
+    }
+
+    @GetMapping("/Size-management")
+    public String ShowSize() {
+        return "admin/Size-management";
+        
+    }
+
+    @GetMapping("/Brand-management")
+    public String ShowBrand() {
+        return "admin/Brand-management";
+        
+    }
     
     @GetMapping("/product-management")
     public String ShowPM() {
@@ -55,16 +72,31 @@ public class AdminController {
     	return "admin/form-discount";
     }
    
-    @GetMapping("/form-oder")
+    @GetMapping("/form-order")
     public String ShowFO() {
-    	return "admin/form-oder";
+    	return "admin/form-order";
     }
     
+    @GetMapping("/form-color")
+    public String ShowFColor() {
+    	return "admin/form-color";
+    }
+    
+    @GetMapping("/form-size")
+    public String ShowFSize() {
+    	return "admin/form-size";
+    }
+
+    @GetMapping("/form-brand")
+    public String ShowFBrand() {
+    	return "admin/form-brand";
+    }
+
     @GetMapping("/form-product")
     public String ShowFP() {
     	return "admin/form-product";
     }
-    
+
     @GetMapping("/statistical")
     public String ShowStatic() {
     	return "admin/statistical";
