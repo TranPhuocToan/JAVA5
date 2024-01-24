@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.ProductDetailEntity;
@@ -9,5 +11,11 @@ import com.example.demo.model.ProductDetailEntity;
  */
 
 public interface ProductDetailService {
-    // ProductDetailEntity findByIdProduct(Integer id);
+    // user
+    List<ProductDetailEntity> findByProductId(Integer id);
+
+    ProductDetailEntity findByColorColorIdAndSizeSizeIdAndProductProductId(Integer colorId, Integer sizeId,
+            Integer productId);
+
+    // user
 }

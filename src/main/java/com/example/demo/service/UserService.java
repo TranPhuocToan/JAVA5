@@ -12,6 +12,8 @@ import com.example.demo.model.UserEntity;
  */
 public interface UserService {
     // ----------Start User ----------
-    List<UserEntity> findByUsername(String username);
+    public List<UserEntity> findByUsername(String username);
+
+    public UserEntity save(UserEntity entity);
     // ----------End User ----------
 }

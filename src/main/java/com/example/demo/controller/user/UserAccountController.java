@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.model.CartEntity;
 import com.example.demo.model.UserEntity;
 import com.example.demo.repository.UserEntityDAO;
+import com.example.demo.service.CartService;
 import com.example.demo.service.ParamService;
 import com.example.demo.service.SessionService;
 import com.example.demo.service.UserService;
@@ -28,9 +30,11 @@ public class UserAccountController {
     @Autowired
     ParamService paramService;
     @Autowired
-    UserEntityDAO userDao;
-    @Autowired
     UserService userService;
+    @Autowired
+    CartService cartService;
+
+    @Autowired
 
     @GetMapping("/login")
     public String LoginForm() {
@@ -68,7 +72,10 @@ public class UserAccountController {
             return "user/register";
         }
         us.setUserRole(false);
-        userDao.save(us);
+        userService.save(us);
+        CartEntity cart = new CartEntity();
+        cart.setUser(us);
+        cartService.save(cart);
         return "user/login";
     }
 

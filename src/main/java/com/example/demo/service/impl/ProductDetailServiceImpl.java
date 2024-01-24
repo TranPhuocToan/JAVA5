@@ -1,5 +1,7 @@
 package com.example.demo.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +17,15 @@ public class ProductDetailServiceImpl implements ProductDetailService {
     @Autowired
     ProductDetailEntityDAO detailEntityDAO;
 
-    // @Override
-    // public ProductDetailEntity findByIdProduct(Integer id) {
-    // // TODO Auto-generated method stub
-    // throw new UnsupportedOperationException("Unimplemented method
-    // 'findByIdProduct'");
-    // }
+    @Override
+    public List<ProductDetailEntity> findByProductId(Integer id) {
+        return detailEntityDAO.findByProductProductId(id);
+    }
+
+    @Override
+    public ProductDetailEntity findByColorColorIdAndSizeSizeIdAndProductProductId(Integer colorId, Integer sizeId,
+            Integer productId) {
+        return detailEntityDAO.findByColorColorIdAndSizeSizeIdAndProductProductId(colorId, sizeId, productId);
+    }
 
 }
