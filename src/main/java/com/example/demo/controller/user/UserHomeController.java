@@ -12,34 +12,9 @@ public class UserHomeController {
         return "user/index";
     }
 
-    @GetMapping("/detail")
-    public String detail() {
-        return "user/detail";
-    }
-
-    @GetMapping("/cart")
-    public String cart() {
-        return "user/cart";
-    }
-
     @GetMapping("/register")
     public String register() {
         return "user/register";
-    }
-
-    @GetMapping("/order")
-    public String cartdetail() {
-        return "user/order";
-    }
-
-    @GetMapping("/accountInfo")
-    public String accountInfo() {
-        return "user/accountInfo";
-    }
-
-    @GetMapping("/accountOrder")
-    public String accountOrder() {
-        return "user/accountOrder";
     }
 
     @GetMapping("/accountChPassword")
