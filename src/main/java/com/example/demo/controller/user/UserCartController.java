@@ -52,7 +52,7 @@ public class UserCartController {
     }
 
     @PostMapping("/cartUpdate/{id}")
-    public String cartUpdate(@PathVariable("id") Integer id, @RequestParam("qty") Integer qty) {
+    public String cartUpdate(@PathVariable("id") Integer id, @RequestParam("qty") Integer qty, Model model) {
         // Lấy Optional<CartDetailEntity> từ ID
         Optional<CartDetailEntity> optionalCartDetail = cartDetailService.findById(id);
 
@@ -74,12 +74,16 @@ public class UserCartController {
             // Xử lý trường hợp cartDetail không tồn tại
             System.out.println("CartDetail with ID " + id + " not found.");
         }
+
         return "redirect:/user/cart";
     }
 
-    @GetMapping("/cartAdd")
-    public String cartAdd(@RequestParam String param) {
-        return new String();
+    @GetMapping("/cartDelete/{id}")
+    public String cartDelete(@PathVariable("id") Integer id, Model model) {
+        Optional<CartDetailEntity> entity = cartDetailService.findById(id);
+        cartDetailService.deleteCartDetail(entity.get());
+        model.addAttribute("successMessage", "Item deleted successfully");
+        return "redirect:/user/cart";
     }
 
 }

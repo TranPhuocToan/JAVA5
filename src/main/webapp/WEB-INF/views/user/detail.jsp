@@ -12,6 +12,7 @@
                 <meta content="Free HTML Templates" name="description">
 
                 <%@include file="../../views/user/common/_head.jsp" %>
+
             </head>
 
             <body>
@@ -38,7 +39,6 @@
                             </div>
                         </div>
                         <!-- Breadcrumb End -->
-
 
                         <!-- Shop Detail Start -->
                         <div class="container-fluid pb-5">
@@ -93,9 +93,9 @@
                                             clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea
                                             Nonumy</p>
 
-                                        <form action="/user/detailAdd" method="post">
+                                        <form id="addToCartForm" action="/user/detailAdd" method="post">
                                             <div class="d-flex mb-3">
-                                                <input style="display: none;" type="text" name="productDId"
+                                                <input style="display: none;" type="text" name="productId"
                                                     value="${detail_id}">
                                                 <c:forEach items="${sizes}" var="size">
                                                     <div class="custom-control custom-radio custom-control-inline">
@@ -120,33 +120,30 @@
                                             </div>
                                             <div class="d-flex align-items-center mb-4 pt-2">
                                                 <div class="input-group quantity mr-3" style="width: 130px;">
-                                                    <!-- <div class="input-group-btn">
-                                                        <button class="btn btn-primary btn-minus">
+                                                    <div class="input-group-btn">
+                                                        <button type="button" class="btn btn-primary btn-minus"
+                                                            onclick="decreaseQuantity()">
                                                             <i class="fa fa-minus"></i>
                                                         </button>
                                                     </div>
-                                                    <input type="text"
+                                                    <input type="text" name="qty"
                                                         class="form-control bg-secondary border-0 text-center"
-                                                        name="qty" value="1">
+                                                        value="1">
                                                     <div class="input-group-btn">
-                                                        <button class="btn btn-primary btn-plus">
+                                                        <button type="button" class="btn btn-primary btn-plus"
+                                                            onclick="increaseQuantity()">
                                                             <i class="fa fa-plus"></i>
                                                         </button>
-                                                    </div> -->
-                                                    <!-- Giảm -->
-                                                    <button class="btn btn-primary " onclick="decreaseQty()">-</button>
-
-                                                    <!-- Ô nhập số lượng -->
-                                                    <input type="text"
-                                                        class="form-control bg-secondary border-0 text-center"
-                                                        name="qty" value="1">
-
-                                                    <!-- Tăng -->
-                                                    <button class="btn btn-primary " onclick="increaseQty()">+</button>
+                                                    </div>
                                                 </div>
-                                                <button type="submit" class="btn btn-primary px-3"><i
+                                                <!-- <button formaction="/user/detailAdd" formmethod="post"
+                                                    onclick="addToCart()" class="btn btn-primary px-3"><i
                                                         class="fa fa-shopping-cart mr-1"></i> Add To
-                                                    Cart</button>
+                                                    Cart</button> -->
+                                                <button type="button" class="btn btn-primary px-3"
+                                                    onclick="addToCart()">
+                                                    <i class="fa fa-shopping-cart mr-1"></i> Add To Cart
+                                                </button>
                                             </div>
                                         </form>
                                         <div class="d-flex pt-2">
@@ -519,24 +516,52 @@
                         <!-- Products End -->
 
 
+
                         <!-- Footer Start -->
                         <%@include file="../../views/user/common/_footer.jsp" %>
-
                             <script>
-                                function increaseQty() {
-                                    var input = document.querySelector('input[name="qty"]');
-                                    var value = parseInt(input.value, 10);
-                                    input.value = value + 1;
+                                // JavaScript to handle quantity change without form submission
+                                function decreaseQuantity() {
+                                    var quantityInput = document.querySelector('.quantity input');
+                                    var currentValue = parseInt(quantityInput.value, 10);
+                                    if (currentValue > 1) {
+                                        quantityInput.value = currentValue - 1;
+                                    }
                                 }
 
-                                function decreaseQty() {
-                                    var input = document.querySelector('input[name="qty"]');
-                                    var value = parseInt(input.value, 10);
-                                    if (value > 1) {
-                                        input.value = value - 1;
+                                function increaseQuantity() {
+                                    var quantityInput = document.querySelector('.quantity input');
+                                    var currentValue = parseInt(quantityInput.value, 10);
+                                    quantityInput.value = currentValue + 1;
+                                }
+
+                                function addToCart() {
+                                    var sizeSelected = $("input[name='size']:checked").val();
+                                    var colorSelected = $("input[name='color']:checked").val();
+                                    var qty = $("input[name='qty']").val();
+
+                                    if (sizeSelected && colorSelected) {
+                                        // Form is valid, submit the form or perform AJAX request
+                                        // Assuming you're submitting the form
+
+                                        var success = sizeSelected !== undefined && colorSelected !== undefined;
+
+                                        if (success) {
+                                            // Show success message
+                                            Swal.fire('Thêm Thành Công!', 'Sản phẩm được thêm vào giỏ hàng thành công.', 'success');
+                                            setTimeout(function () {
+                                                $('#addToCartForm').submit();
+                                            }, 1000);
+
+                                        }
+                                    } else {
+                                        // Show error message for missing size or color
+                                        Swal.fire('Thêm Thất bại!', 'Vui lòng chọn cả kích thước và màu sắc.', 'error');
                                     }
                                 }
                             </script>
+
+
             </body>
 
             </html>

@@ -12,10 +12,14 @@ import com.example.demo.model.ProductDetailEntity;
 
 public interface ProductDetailService {
     // user
+
+    // tìm productdeetail theo productid
     List<ProductDetailEntity> findByProductId(Integer id);
 
+    // tìm productdeetail theo productid color size
     ProductDetailEntity findByColorColorIdAndSizeSizeIdAndProductProductId(Integer colorId, Integer sizeId,
             Integer productId);
 
+    // tìm productdeetail theo cart
     // user
 }

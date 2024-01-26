@@ -17,21 +17,6 @@ public class UserHomeController {
         return "user/register";
     }
 
-    @GetMapping("/order")
-    public String cartdetail() {
-        return "user/order";
-    }
-
-    @GetMapping("/accountInfo")
-    public String accountInfo() {
-        return "user/accountInfo";
-    }
-
-    @GetMapping("/accountOrder")
-    public String accountOrder() {
-        return "user/accountOrder";
-    }
-
     @GetMapping("/accountChPassword")
     public String accountChPassword() {
         return "user/accountChPassword";

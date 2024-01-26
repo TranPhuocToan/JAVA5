@@ -12,5 +12,9 @@ import java.util.List;
  * CartEntityDAO
  */
 public interface CartEntityDAO extends JpaRepository<CartEntity, Integer> {
+    // user
+    // tìm cart theo userid
     CartEntity findByUserUserId(Integer id);
+
+    // user
 }

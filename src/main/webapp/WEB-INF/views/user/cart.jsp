@@ -13,6 +13,9 @@
                     <meta content="Free HTML Templates" name="description">
 
                     <%@include file="../../views/user/common/_head.jsp" %>
+                        <!-- SweetAlert2 CSS -->
+                        <link rel="stylesheet"
+                            href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.0/dist/sweetalert2.min.css">
                 </head>
 
                 <body>
@@ -39,7 +42,6 @@
                                 </div>
                             </div>
                             <!-- Breadcrumb End -->
-
 
                             <!-- Cart Start -->
                             <div class="container-fluid">
@@ -104,9 +106,33 @@
                                                                     value="${cartItem.productDetial.product.productPrice*cartItem.quantity}"
                                                                     currencyCode="VND" />
                                                             </td>
-                                                            <td class="align-middle"><button
-                                                                    class="btn btn-sm btn-danger"><i
-                                                                        class="fa fa-times"></i></button></td>
+                                                            <!-- <td class="align-middle">
+                                                                <a class="btn btn-sm btn-danger"
+                                                                    href="/user/cartDelete/${cartItem.cartDetailId}">
+                                                                    <i class="fa fa-times"></i>
+                                                                </a>
+                                                            </td> -->
+                                                            <!-- <td class="align-middle">
+                                                                <a class="btn btn-sm btn-danger" href="#"
+                                                                    onclick="confirmDelete('${cartItem.cartDetailId}')">
+                                                                    <i class="fa fa-times"></i>
+                                                                </a>
+                                                            </td> -->
+                                                            <!-- Modify your delete button -->
+                                                            <td class="align-middle">
+                                                                <!-- <a class="btn btn-sm btn-danger" href="#"
+                                                                    data-toggle="modal"
+                                                                    data-target="#confirmDeleteModal"
+                                                                    data-cart-detail-id="${cartItem.cartDetailId}">
+                                                                    <i class="fa fa-times"></i>
+                                                                </a> -->
+                                                                <a class="btn btn-sm btn-danger" href="#"
+                                                                    onclick="confirmDelete('${cartItem.cartDetailId}')">
+                                                                    <i class="fa fa-times"></i>
+                                                                </a>
+                                                            </td>
+
+
                                                         </tr>
                                                     </form>
                                                 </c:forEach>
@@ -157,10 +183,89 @@
                                 </div>
                             </div>
                             <!-- Cart End -->
+                            <!-- Add a container for alerts -->
+                            <div id="alertContainer" class="position-fixed top-0 end-0 p-3" style="z-index: 1000">
+                                <!-- Alert will be dynamically added here -->
+                            </div>
 
+                            <!-- Add a hidden modal -->
+                            <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog"
+                                aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Deletion</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure you want to delete this item from the cart?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Cancel</button>
+                                            <button type="button" class="btn btn-danger"
+                                                id="confirmDeleteBtn">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <!-- Footer Start -->
                             <%@include file="../../views/user/common/_footer.jsp" %>
+                                <!-- SweetAlert2 JS -->
+                                <script
+                                    src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.0/dist/sweetalert2.min.js"></script>
+
+                                <!-- <script>
+                                    function confirmDelete(cartDetailId) {
+                                        var confirmation = confirm("Are you sure you want to delete this item from the cart?");
+                                        if (confirmation) {
+                                            window.location.href = "/user/cartDelete/" + cartDetailId;
+                                        }
+                                    }
+                                </script> -->
+
+                                <!-- JavaScript code to handle modal confirmation and redirect -->
+                                <!-- <script>
+                                    // Store the cartDetailId when modal is shown
+                                    $('#confirmDeleteModal').on('show.bs.modal', function (event) {
+                                        var button = $(event.relatedTarget);
+                                        var cartDetailId = button.data('cart-detail-id');
+                                        $('#confirmDeleteBtn').attr('data-cart-detail-id', cartDetailId);
+                                    });
+
+                                    // Handle delete confirmation
+                                    $('#confirmDeleteBtn').click(function () {
+                                        var cartDetailId = $(this).data('cart-detail-id');
+                                        window.location.href = "/user/cartDelete/" + cartDetailId;
+                                    });
+                                </script> -->
+                                <script>
+                                    function confirmDelete(cartDetailId) {
+                                        Swal.fire({
+                                            title: 'Bạn có chắc ?',
+                                            text: 'Bạn sắp xóa sản phẩm này',
+                                            icon: 'warning',
+                                            showCancelButton: true,
+                                            confirmButtonText: 'Yes, delete it!',
+                                            cancelButtonText: 'No, cancel!',
+                                            reverseButtons: true
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                // Show success message
+                                                Swal.fire('Đã xóa!', 'Sản phẩm của bạn đã bị xóa.', 'success');
+                                                setTimeout(function () {
+                                                    window.location.href = '/user/cartDelete/' + cartDetailId;
+                                                }, 1000);
+                                            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                                                // User clicked "Cancel" or closed the modal
+                                                Swal.fire('Đã hủy', 'Sản phẩm của bạn an toàn', 'info');
+                                            }
+                                        });
+                                    }
+                                </script>
                 </body>
 
                 </html>

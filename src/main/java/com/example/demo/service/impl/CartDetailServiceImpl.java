@@ -39,4 +39,15 @@ public class CartDetailServiceImpl implements CartDetailService {
         return cartDetailEntityDAO.save(entity);
     }
 
+    @Override
+    public CartDetailEntity findByProductDetialProductDetailIdAndCartCartId(Integer productDetailId,
+            Integer cartCartId) {
+        return cartDetailEntityDAO.findByProductDetialProductDetailIdAndCartCartId(productDetailId, cartCartId);
+    }
+
+    @Override
+    public void deleteCartDetail(CartDetailEntity entity) {
+        cartDetailEntityDAO.delete(entity);
+    }
+
 }
