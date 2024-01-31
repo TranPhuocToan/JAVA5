@@ -1,5 +1,8 @@
 package com.example.demo.service.impl;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +21,11 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     @Override
     public OrderDetailEntity save(OrderDetailEntity entity) {
         return orderDetailEntityDAO.save(entity);
+    }
+
+    @Override
+    public List<OrderDetailEntity> findByOrderOrderId(Integer id) {
+        return orderDetailEntityDAO.findByOrderOrderId(id);
     }
 
 }

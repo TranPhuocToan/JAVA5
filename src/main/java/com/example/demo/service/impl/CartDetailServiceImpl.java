@@ -50,4 +50,9 @@ public class CartDetailServiceImpl implements CartDetailService {
         cartDetailEntityDAO.delete(entity);
     }
 
+    @Override
+    public Integer countCartDetail(Integer id) {
+        return cartDetailEntityDAO.findCountCartdetail(id);
+    }
+
 }

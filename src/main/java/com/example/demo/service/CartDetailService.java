@@ -26,8 +26,11 @@ public interface CartDetailService {
     // update cartdetail
     CartDetailEntity updateCartDetail(CartDetailEntity entity);
 
-    // xóa detail
+    // xóa cartdetail
     void deleteCartDetail(CartDetailEntity entity);
+
+    // count cartdetail theo cartid
+    Integer countCartDetail(Integer id);
     // user
 
 }

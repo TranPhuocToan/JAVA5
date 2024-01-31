@@ -20,10 +20,12 @@ import com.example.demo.model.CartEntity;
 import com.example.demo.model.ColorEntity;
 import com.example.demo.model.ProductDetailEntity;
 import com.example.demo.model.UserEntity;
+import com.example.demo.repository.CategoryEntityDAO;
 import com.example.demo.service.CartDetailService;
 import com.example.demo.service.CartService;
 import com.example.demo.service.ParamService;
 import com.example.demo.service.ProductDetailService;
+import com.example.demo.service.ProductService;
 import com.example.demo.service.SessionService;
 
 @Controller
@@ -39,9 +41,14 @@ public class UserProductDetailController {
     CartService cartService;
     @Autowired
     SessionService sessionService;
+    @Autowired
+    CategoryEntityDAO categoryEntityDAO;
+    @Autowired
+    ProductService productService;
 
     @RequestMapping("/detail/{id}")
     public String detail(@PathVariable("id") Integer id, Model model) {
+        model.addAttribute("categories", categoryEntityDAO.findAll());
         int count = 1;
         List<Map<String, Object>> colors = new ArrayList<>();
         List<Map<String, Object>> sizes = new ArrayList<>();
@@ -51,6 +58,8 @@ public class UserProductDetailController {
                 model.addAttribute("detail_image", productDetail.getProduct().getProductImages());
                 model.addAttribute("detail_name", productDetail.getProduct().getProductName());
                 model.addAttribute("detail_price", productDetail.getProduct().getProductPrice());
+                model.addAttribute("proBrand",
+                        productService.findByBrandBrandId(productDetail.getProduct().getBrand().getBrandId()));
 
             }
             Integer colorId = productDetail.getColor().getColorId();
@@ -76,9 +85,14 @@ public class UserProductDetailController {
 
             count++;
         }
+
         model.addAttribute("sizes", sizes);
         model.addAttribute("colors", colors);
-
+        model.addAttribute("cartCount", cartDetailService.countCartDetail(getCartCount()));
+        if (sessionService.get("userSession") != null) {
+            UserEntity userSession = sessionService.get("userSession");
+            model.addAttribute("username", userSession.getFullName());
+        }
         return "user/detail";
     }
 
@@ -92,9 +106,9 @@ public class UserProductDetailController {
         UserEntity user = sessionService.get("userSession");
         CartEntity cartEntity = cartService.findByUserUserId(user.getUserId());
         System.out.println("productDID " + pID + "size " + size + "color " + color + "Qty " + qty);
-        ProductDetailEntity productD = productDetailService.findByColorColorIdAndSizeSizeIdAndProductProductId(color,
+        ProductDetailEntity productD = productDetailService.findByColorColorIdAndSizeSizeIdAndProductProductId(
+                color,
                 size, pID);
-
         if (productD != null) {
             System.out.println("productID " + pID + "SL proD " + productD.getQuantity() + "size " + size + "color "
                     + color + "Qty " + qty);
@@ -119,7 +133,15 @@ public class UserProductDetailController {
                 cartDetailService.createCartDetail(cartDetailEntity);
             }
         }
-
         return "redirect:/user/detail/" + pID;
+    }
+
+    public Integer getCartCount() {
+        CartEntity cart = new CartEntity();
+        if (sessionService.get("userSession") != null) {
+            UserEntity user = sessionService.get("userSession");
+            cart = cartService.findByUserUserId(user.getUserId());
+        }
+        return cart.getCartId();
     }
 }
