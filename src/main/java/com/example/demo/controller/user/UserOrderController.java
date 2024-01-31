@@ -52,6 +52,10 @@ public class UserOrderController {
 
     @GetMapping("/order")
     public String order(@ModelAttribute("shippingInfo") ShippingInfoEntity shippingInfo, Model model) {
+        if (sessionService.get("userSession") != null) {
+            UserEntity userSession = sessionService.get("userSession");
+            model.addAttribute("username", userSession.getFullName());
+        }
         UserEntity user = sessionService.get("userSession");
         CartEntity cart = cartService.findByUserUserId(user.getUserId());
         List<CartDetailEntity> cartDetail = cartDetailService.findCartCartId(cart.getCartId());
@@ -60,6 +64,7 @@ public class UserOrderController {
         for (CartDetailEntity cartD : cartDetail) {
             Amount += cartD.getQuantity() * cartD.getProductDetial().getProduct().getProductPrice();
         }
+        model.addAttribute("cartCount", cartDetailService.countCartDetail(getCartCount()));
         model.addAttribute("amount", Amount);
         return "user/order";
     }
@@ -67,6 +72,10 @@ public class UserOrderController {
     @PostMapping("/order/add")
     public String orderAdd(@Validated @ModelAttribute("shippingInfo") ShippingInfoEntity shippingInfo,
             BindingResult result, Model model) {
+        if (sessionService.get("userSession") != null) {
+            UserEntity userSession = sessionService.get("userSession");
+            model.addAttribute("username", userSession.getFullName());
+        }
         UserEntity user = sessionService.get("userSession");
         CartEntity cart = cartService.findByUserUserId(user.getUserId());
         List<CartDetailEntity> cartDetail = cartDetailService.findCartCartId(cart.getCartId());
@@ -77,6 +86,7 @@ public class UserOrderController {
         }
         model.addAttribute("amount", Amount);
         if (result.hasErrors()) {
+            model.addAttribute("cartCount", cartDetailService.countCartDetail(getCartCount()));
             return "user/order";
         } else {
             // UserEntity user = sessionService.get("userSession");
@@ -108,5 +118,14 @@ public class UserOrderController {
             }
         }
         return "redirect:/user/index";
+    }
+
+    public Integer getCartCount() {
+        CartEntity cart = new CartEntity();
+        if (sessionService.get("userSession") != null) {
+            UserEntity user = sessionService.get("userSession");
+            cart = cartService.findByUserUserId(user.getUserId());
+        }
+        return cart.getCartId();
     }
 }

@@ -146,12 +146,12 @@
   <body>
     <div class="form-container" style="margin:100px auto;">
       <p class="title">Welcome back</p>
-      <span style="color: red;">${message}</span>
+      <span style="color: red; margin: 10px;">${message}${param.error}</span>
       <form class="form" action="/account/login" method="post">
         <input type="text" name="username" class="input" placeholder="Username" required>
         <input type="password" name="password" class="input" placeholder="Password" required>
         <p class="page-link">
-          <span class="page-link-label">Forgot Password?</span>
+          <span class="page-link-label"><a class="sign-up-link" href="/account/forgotPass">Forgot Password?</a></span>
         </p>
         <button type="submit" class="form-btn">Sign in</button>
       </form>

@@ -11,4 +11,7 @@ import java.util.List;
 public interface UserEntityDAO extends JpaRepository<UserEntity, Integer> {
 
     List<UserEntity> findByUserName(String userName);
+
+    List<UserEntity> findByEmail(String email);
+
 }
