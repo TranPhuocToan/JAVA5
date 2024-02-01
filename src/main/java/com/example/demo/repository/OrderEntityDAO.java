@@ -12,5 +12,8 @@ import com.example.demo.model.OrderEntity;
 public interface OrderEntityDAO extends JpaRepository<OrderEntity, Integer> {
     // user
     List<OrderEntity> findByUserUserId(Integer userId);
+
+    // timtheo id
+    OrderEntity findByOrderId(Integer orderId);
     // user
 }

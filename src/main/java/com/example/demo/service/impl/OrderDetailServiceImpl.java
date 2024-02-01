@@ -28,4 +28,9 @@ public class OrderDetailServiceImpl implements OrderDetailService {
         return orderDetailEntityDAO.findByOrderOrderId(id);
     }
 
+    @Override
+    public void delete(OrderDetailEntity entity) {
+        orderDetailEntityDAO.delete(entity);
+    }
+
 }
