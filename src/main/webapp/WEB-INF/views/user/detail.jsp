@@ -418,19 +418,19 @@
                         <%@include file="../../views/user/common/_footer.jsp" %>
                             <script>
                                 // JavaScript to handle quantity change without form submission
-                                function decreaseQuantity() {
-                                    var quantityInput = document.querySelector('.quantity input');
-                                    var currentValue = parseInt(quantityInput.value, 10);
-                                    if (currentValue > 1) {
-                                        quantityInput.value = currentValue - 1;
-                                    }
-                                }
+                                // function decreaseQuantity() {
+                                //     var quantityInput = document.querySelector('.quantity input');
+                                //     var currentValue = parseInt(quantityInput.value, 10);
+                                //     if (currentValue > 1) {
+                                //         quantityInput.value = currentValue - 1;
+                                //     }
+                                // }
 
-                                function increaseQuantity() {
-                                    var quantityInput = document.querySelector('.quantity input');
-                                    var currentValue = parseInt(quantityInput.value, 10);
-                                    quantityInput.value = currentValue + 1;
-                                }
+                                // function increaseQuantity() {
+                                //     var quantityInput = document.querySelector('.quantity input');
+                                //     var currentValue = parseInt(quantityInput.value, 10);
+                                //     quantityInput.value = currentValue + 1;
+                                // }
 
                                 function addToCart() {
                                     var sizeSelected = $("input[name='size']:checked").val();
