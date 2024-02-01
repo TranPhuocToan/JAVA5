@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import org.hibernate.annotations.Nationalized;
+
 import io.micrometer.common.lang.NonNull;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,8 +30,10 @@ public class ShippingInfoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer shippingId;
     @NotBlank(message = "Vui lòng nhập họ và tên !")
+    @Nationalized
     String shippingName;
     @NotBlank(message = "vui long nhập địa chỉ nhận hàng !")
+    @Nationalized
     String shippingAddress;
 
     @NotBlank(message = "Vui long nhập số điện thoại !")

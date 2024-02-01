@@ -2,6 +2,8 @@ package com.example.demo.model;
 
 import java.util.List;
 
+import org.hibernate.annotations.Nationalized;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -23,6 +25,7 @@ public class CategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer categoryId;
+    @Nationalized
     String categoryName;
 
     @JsonIgnore

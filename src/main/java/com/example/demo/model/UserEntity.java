@@ -2,6 +2,8 @@ package com.example.demo.model;
 
 import java.util.List;
 
+import org.hibernate.annotations.Nationalized;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -29,6 +31,7 @@ public class UserEntity {
     @NotBlank(message = "User name không thể để tróng !")
     String userName;
     @NotBlank(message = "Full name không thể để tróng !")
+    @Nationalized
     String fullName;
     @NotBlank(message = "Password không thể để tróng !")
     String passWord;
