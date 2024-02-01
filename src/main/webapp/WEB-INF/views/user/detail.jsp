@@ -97,6 +97,7 @@
                                             <div class="d-flex mb-3">
                                                 <input style="display: none;" type="text" name="productId"
                                                     value="${detail_id}">
+                                                <strong class="text-dark mr-3">Size:</strong>
                                                 <c:forEach items="${sizes}" var="size">
                                                     <div class="custom-control custom-radio custom-control-inline">
                                                         <input type="radio" class="custom-control-input"
@@ -121,8 +122,7 @@
                                             <div class="d-flex align-items-center mb-4 pt-2">
                                                 <div class="input-group quantity mr-3" style="width: 130px;">
                                                     <div class="input-group-btn">
-                                                        <button type="button" class="btn btn-primary btn-minus"
-                                                            onclick="decreaseQuantity()">
+                                                        <button type="button" class="btn btn-primary btn-minus">
                                                             <i class="fa fa-minus"></i>
                                                         </button>
                                                     </div>
@@ -130,8 +130,7 @@
                                                         class="form-control bg-secondary border-0 text-center"
                                                         value="1">
                                                     <div class="input-group-btn">
-                                                        <button type="button" class="btn btn-primary btn-plus"
-                                                            onclick="increaseQuantity()">
+                                                        <button type="button" class="btn btn-primary btn-plus">
                                                             <i class="fa fa-plus"></i>
                                                         </button>
                                                     </div>
