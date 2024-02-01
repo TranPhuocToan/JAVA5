@@ -9,7 +9,7 @@
 <title>Quản Lý Đơn Hàng</title>
 <!-- Main CSS-->
 <link rel="stylesheet" type="text/css"
-	href="<c:url value='../assets/admin/css/main.css'/>" />
+	href="<c:url value='/assets/admin/css/main.css'/>" />
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 <!-- or -->
@@ -82,7 +82,7 @@
 
 							</thead>
 							<tbody>
-								<c:forEach var="orderDetail" items="${orderDetails}">
+								<c:forEach var="order" items="${order}">
 									<tr>
 										<td>${orderDetail.orders.order_id}</td>
 										<td>${orderDetail.orders.customers.name}</td>
@@ -103,14 +103,14 @@
 		</div>
 	</main>
 	<!-- Essential javascripts for application to work-->
-	<script src="<c:url value='../assets/admin/js/jquery-3.2.1.min.js'/>"></script>
-	<script src="<c:url value='../assets/admin/js/popper.min.js'/>"></script>
-	<script src="<c:url value='../assets/admin/js/bootstrap.min.js'/>"></script>
+	<script src="<c:url value='/assets/admin/js/jquery-3.2.1.min.js'/>"></script>
+	<script src="<c:url value='/assets/admin/js/popper.min.js'/>"></script>
+	<script src="<c:url value='/assets/admin/js/bootstrap.min.js'/>"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 	<script src="<c:url value='../assets/admin/js/main.js'/>"></script>
 	<!-- The javascript plugin to display page loading on top-->
-	<script src="<c:url value='../assets/admin/js/plugins/pace.min.js'/>" /></script>
+	<script src="<c:url value='/assets/admin/js/plugins/pace.min.js'/>" /></script>
 	<!-- Page specific javascripts-->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>

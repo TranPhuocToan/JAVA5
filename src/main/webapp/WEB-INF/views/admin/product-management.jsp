@@ -46,7 +46,7 @@
 						<div class="row element-button">
 							<div class="col-sm-2">
 
-								<a class="btn btn-add btn-sm" href="/admin/form-product"
+								<a class="btn btn-add btn-sm" href="/product/form-product"
 									title="Thêm"><i class="fas fa-plus"></i> Tạo mới sản phẩm</a>
 							</div>
 							<div class="col-sm-2">
@@ -77,31 +77,29 @@
 									<th>Tên sản phẩm</th>
 									<th>Mô tả</th>
 									<th>Ảnh</th>
-									<th>Số lượng tồn kho</th>
+									<th>Hãng</th>
 									<th>Giá bán</th>
-									<th>Giá vốn</th>
-									<th>Danh mục</th>
+									<th>Loại giày</th>
 									<th>Chức năng</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="product" items="${products}">
+								<c:forEach var="product" items="${product1}">
 									<tr>
-										<td>${product.product_id}</td>
-										<td>${product.product_name}</td>
-										<td>${product.description}</td>
+										<td>${product.productId}</td>
+										<td>${product.productName}</td>
+										<td>${product.productDescription}</td>
 										<td><img class="img-card-person"
-											src="<c:url value="/img/${product.picture}"/>" alt=""></td>
-										<td>${product.quantity_in_stock}</td>
-										<td>${product.product_price}</td>
-										<td>${product.capital_price}</td>
-										<td>${product.categories.category_name}</td>
+											src="<c:url value="/img/${product.productImages}"/>" alt=""></td>
+										<td>${product.brand.brandName}</td>
+										<td>${product.productPrice}</td>
+										<td>${product.category.categoryName}</td>
 										<td><a class="btn btn-primary btn-sm trash" type="button"
 											title="Xóa"
-											onclick="confirmDelete('${product.product_id}')"> <i
+											onclick="confirmDelete('${product.productId}')"> <i
 												class="fas fa-trash-alt"></i>
 										</a> <a class="btn btn-primary btn-sm edit" type="button"
-											href="/product/edit/${product.product_id}"> <i
+											href="/product/edit/${product.productId}"> <i
 												class="fas fa-edit"></i>
 										</a>
 									</tr>

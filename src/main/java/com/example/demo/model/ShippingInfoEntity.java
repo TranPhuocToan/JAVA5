@@ -40,4 +40,4 @@ public class ShippingInfoEntity {
     @ManyToOne
     @JoinColumn(name = "orderId")
     OrderEntity order;
-}
+} 

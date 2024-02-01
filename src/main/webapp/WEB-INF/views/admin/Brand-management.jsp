@@ -44,7 +44,7 @@
 						<div class="row element-button">
 							<div class="col-sm-2">
 
-								<a class="btn btn-add btn-sm" href="/admin/form-brand"
+								<a class="btn btn-add btn-sm" href="/brand/form-brand"
 									title="Thêm"><i class="fas fa-plus"></i> Tạo mới thương hiệu</a>
 							</div>
 							<div class="col-sm-2">
@@ -78,14 +78,14 @@
 							<tbody>
 								<c:forEach var="brand" items="${brand}">
 									<tr>
-										<td>${brand.brand_id}</td>
-										<td>${brand.brand_name}</td>
+										<td>${brand.brandId}</td>
+										<td>${brand.brandName}</td>
 										<td><a class="btn btn-primary btn-sm trash" type="button"
 											title="Xóa"
-											onclick="confirmDelete('${product.product_id}')"> <i
+											onclick="confirmDelete('${brand.brandId}')"> <i
 												class="fas fa-trash-alt"></i>
 										</a> <a class="btn btn-primary btn-sm edit" type="button"
-											href="/product/edit/${product.product_id}"> <i
+											href="/brand/edit/${brand.brandId}"> <i
 												class="fas fa-edit"></i>
 										</a>
 									</tr>
@@ -166,7 +166,7 @@
 	    if (result) {
 	        // Sử dụng AJAX để gửi yêu cầu xóa
 	        var xhr = new XMLHttpRequest();
-	        xhr.open("GET", "/product/delete/" + productId, true);
+	        xhr.open("GET", "/brand/delete/" + brandId, true);
 	        xhr.onreadystatechange = function () {
 	            if (xhr.readyState == 4 && xhr.status == 200) {
 	                // Xóa thành công, có thể cập nhật giao diện hoặc thông báo thành công tại đây

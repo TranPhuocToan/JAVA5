@@ -8,7 +8,7 @@
                 <meta charset="UTF-8">
                 <title>Chi Tiết Thương Hiệu</title>
                 <!-- Main CSS-->
-                <link rel="stylesheet" type="text/css" href="<c:url value='../assets/admin/css/main.css'/>" />
+                <link rel="stylesheet" type="text/css" href="<c:url value='/assets/admin/css/main.css'/>" />
                 <!-- Font-icon css-->
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
                 <!-- or -->
@@ -112,31 +112,37 @@
                                     <div class="tile">
                                         <h3 class="tile-title">Tạo thương hiệu</h3>
                                         <div class="tile-body">
-                                            <form class="row">
-                                                <div class="form-group  col-md-4">
-                                                    <label class="control-label">ID thương hiệu</label>
-                                                    <input class="form-control" type="text">
+                                            <form:form action="/brand/create" modelAttribute="brand"
+                                                enctype="multipart/form-data">
+                                                <div class="row">
+                                                    <div class="form-group  col-md-4">
+                                                        <label class="control-label">ID thương hiệu</label>
+                                                        <form:input path="brandId" class="form-control"
+                                                            readonly="True" />
+                                                    </div>
+                                                    <div class="form-group  col-md-4">
+                                                        <label class="control-label">Tên thương hiệu</label>
+                                                        <form:input path="brandName" class="form-control" />
+                                                    </div>
                                                 </div>
-                                                <div class="form-group  col-md-4">
-                                                    <label class="control-label">Tên thương hiệu</label>
-                                                    <input class="form-control" type="text">
-                                                </div>
+                                                <button class="btn btn-save">Lưu lại</button>
+                                                <a class="btn btn-cancel" href="/brand">Hủy bỏ</a>
+                                            </form:form>
                                         </div>
-                                        <button class="btn btn-save" type="button">Lưu lại</button>
-                                        <a class="btn btn-cancel" href="/doc/table-data-oder.html">Hủy bỏ</a>
+
                                     </div>
                         </main>
                         <!-- Essential javascripts for application to work-->
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" />
                         </script>
-                        <script src="<c:url value='../assets/admin/js/popper.min.js'/>" />
+                        <script src="<c:url value='/assets/admin/js/popper.min.js'/>" />
                         </script>
                         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
                             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
                             crossorigin="anonymous"></script>
-                        <script src="../assets/admin/js/main.js"></script>
+                        <script src="/assets/admin/js/main.js"></script>
                         <!-- The javascript plugin to display page loading on top-->
-                        <script src="../assets/admin/js/plugins/pace.min.js"></script>
+                        <script src="/assets/admin/js/plugins/pace.min.js"></script>
 
             </body>
 

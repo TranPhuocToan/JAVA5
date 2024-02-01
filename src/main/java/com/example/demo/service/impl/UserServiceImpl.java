@@ -27,4 +27,10 @@ public class UserServiceImpl implements UserService {
         return userEntityDAO.save(entity);
     }
 
+    @Override
+    public UserEntity update(UserEntity entity) {
+        entity.getEmail();
+        entity.getFullName();
+        return userEntityDAO.save(entity);
+    }
 }

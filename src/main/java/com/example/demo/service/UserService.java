@@ -16,4 +16,7 @@ public interface UserService {
 
     public UserEntity save(UserEntity entity);
     // ----------End User ----------
+
+    public UserEntity update(UserEntity entity);
+    // ----------End User ----------
 }

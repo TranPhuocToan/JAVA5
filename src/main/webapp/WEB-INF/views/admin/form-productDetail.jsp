@@ -152,44 +152,35 @@
 						<main class="app-content">
 							<div class="app-title">
 								<ul class="app-breadcrumb breadcrumb">
-									<li class="breadcrumb-item">Danh sách sản phẩm</li>
-									<li class="breadcrumb-item"><a href="#">Thêm sản phẩm</a></li>
+									<li class="breadcrumb-item">Danh sách chi tiết sản phẩm</li>
+									<li class="breadcrumb-item"><a href="#">Thêm chi tiết sản phẩm</a></li>
 								</ul>
 							</div>
 							<div class="row">
 								<div class="col-md-12">
 									<div class="tile">
-										<h3 class="tile-title">Tạo mới sản phẩm</h3>
-										<div class="tile-body">
-											<div class="row element-button">
-												<div class="col-sm-2">
-													<a class="btn btn-add btn-sm" data-toggle="modal"
-														data-target="#adddanhmuc"><i class="fas fa-folder-plus"></i>
-														Thêm danh mục</a>
-												</div>
-											</div>
-										</div>
-										<form:form class="row" action="/product" modelAttribute="product"
+										<h3 class="tile-title">Tạo mới chi tiết sản phẩm</h3>
+										<form:form class="row" action="/productDetail" modelAttribute="productDetail"
 											enctype="multipart/form-data">
 											<div class="form-group col-md-4">
 												<label class="control-label">Mã sản phẩm</label>
-												<form:input path="productId" class="form-control" readonly="True" />
+												<form:input path="productDetailId" class="form-control" readonly="True" />
 												<!-- <input class="form-control"
 												readonly="" /> -->
 											</div>
 
 											<div class="form-group col-md-4">
 												<label class="control-label">Tên sản phẩm</label>
-												<form:input path="productName" class="form-control" />
+												<form:input path="product.productName" class="form-control" />
 												<!-- <input class="form-control"
 												readonly="" /> -->
 											</div>
 
 
 											<div class="form-group col-md-4">
-												<label class="control-label">Loại Giày</label>
-												<form:select path="category.categoryId" class="form-control">
-													<form:options items="${categoryIds}" />
+												<label class="control-label">Kích cỡ</label>
+												<form:select path="size.sizeName" class="form-control">
+													<form:options items="${SizeIds}" />
 												</form:select>
 												<!-- <input class="form-control"
 												readonly="" /> -->
@@ -204,33 +195,23 @@
 												</select>
 											</div> -->
 											<div class="form-group col-md-4">
-												<label class="control-label">Giá bán</label>
-												<form:input path="productPrice" class="form-control" type="number" />
+												<label class="control-label">Số Lượng</label>
+												<form:input path="quantity" class="form-control" type="number" />
 												<!-- <input class="form-control"
 												type="number" /> -->
 											</div>
 											<div class="form-group col-md-4">
-												<label class="control-label">Hãng</label>
-												<form:select path="brand.brandId" class="form-control">
-													<form:options items="${brandIds}" />
+												<label class="control-label">Màu Sắc</label>
+												<form:select path="color.colorName" class="form-control">
+													<form:options items="${ColorIds}"/>
 												</form:select>
 												<!-- <input class="form-control"
 												type="number" /> -->
 											</div>
-											<div class="form-group col-md-4">
-												<label class="control-label">Ảnh sản phẩm</label> <input name="picture"
-													type="file" class="form-control" />
-											</div>
-
 											<div class="form-group col-md-12">
-												<label class="control-label">Mô tả sản phẩm</label>
-												<form:textarea class="form-control" path="productDescription" rows="5"/>
-												<!-- <textarea rows="1"></textarea> -->
-											</div>
-											<div class="form-group col-md-12">
-												<button class="btn btn-save" formaction="/product/create">Lưu
+												<button class="btn btn-save" formaction="/productDetail/create">Lưu
 													lại</button>
-												<a class="btn btn-cancel" href="/product">Hủy bỏ</a>
+												<a class="btn btn-cancel" href="/productDetail">Hủy bỏ</a>
 											</div>
 											<h1>${message}</h1>
 										</form:form>
@@ -238,58 +219,6 @@
 								</div>
 							</div>
 						</main>
-
-
-
-						<!--
-  MODAL DANH MỤC
--->
-						<div class="modal fade" id="adddanhmuc" tabindex="-1" role="dialog"
-							aria-labelledby="exampleModalCenterTitle" data-backdrop="static" data-keyboard="false">
-							<div class="modal-dialog modal-dialog-centered" role="document">
-								<div class="modal-content">
-
-									<div class="modal-body">
-										<form action="/product/addCategory" modelAttribute="category" method="post">
-											<div class="row">
-												<div class="form-group  col-md-12">
-													<span class="thong-tin-thanh-toan">
-														<h5>Thêm loại giày mới</h5>
-													</span>
-												</div>
-												<div class="form-group col-md-12">
-													<label class="control-label">Nhập tên loại giày mới</label> <input
-														name="category_name" class="form-control" required />
-												</div>
-												<div class="form-group col-md-12">
-													<label class="control-label">Loại giày hiện đang
-														có</label>
-
-													<ul style="padding-left: 20px;">
-														<c:forEach var="category" items="${category}">
-															<li>${category.categoryName}</li>
-														</c:forEach>
-													</ul>
-
-												</div>
-											</div>
-											<BR>
-											<button class="btn btn-save" type="submit">Lưu lại</button>
-											<a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-											<BR>
-										</form>
-									</div>
-									<div class="modal-footer"></div>
-								</div>
-							</div>
-						</div>
-						<!--
-MODAL
--->
-
-
-
-
 
 
 						<!-- Essential javascripts for application to work-->

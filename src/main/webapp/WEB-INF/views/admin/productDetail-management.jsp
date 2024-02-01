@@ -1,26 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="jakarta.tags.core" prefix="c"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quản Lý Kích Cỡ</title>
-    <!-- Main CSS-->
-    <link rel="stylesheet" type="text/css" href="<c:url value='../assets/admin/css/main.css'/>" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <!-- or -->
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-    <!-- Font-icon css-->
-    <link rel="stylesheet" type="text/css"
-        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<meta charset="UTF-8">
+<title>Quản Lý Sản Phẩm</title>
+<!-- Main CSS-->
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/assets/admin/css/main.css'/>" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+<!-- or -->
+<link rel="stylesheet"
+	href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+<!-- Font-icon css-->
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 </head>
 <body onload="time()" class="app sidebar-mini rtl">
 	<!-- Navbar-->
@@ -33,7 +35,7 @@
 		<div class="app-title">
 			<ul class="app-breadcrumb breadcrumb side">
 				<li class="breadcrumb-item active"><a href="#"><b>Danh
-							sách kích cỡ</b></a></li>
+							sách chi tiết sản phẩm</b></a></li>
 			</ul>
 			<div id="clock"></div>
 		</div>
@@ -44,8 +46,8 @@
 						<div class="row element-button">
 							<div class="col-sm-2">
 
-								<a class="btn btn-add btn-sm" href="/size/form-size"
-									title="Thêm"><i class="fas fa-plus"></i> Tạo mới kích cỡ</a>
+								<a class="btn btn-add btn-sm" href="/productDetail/form-productDetail"
+									title="Thêm"><i class="fas fa-plus"></i> Tạo mới sản phẩm</a>
 							</div>
 							<div class="col-sm-2">
 								<a class="btn btn-delete btn-sm print-file" type="button"
@@ -71,21 +73,27 @@
 						<table class="table table-hover table-bordered" id="sampleTable">
 							<thead>
 								<tr>
-									<th>ID kích cỡ</th>
-									<th>Tên kích cỡ</th>
+									<th>Mã sản phẩm</th>
+									<th>Tên sản phẩm</th>
+									<th>Số lượng</th>
+									<th>Kích cỡ</th>
+									<th>Màu sắc</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="size" items="${size}">
+								<c:forEach var="productDetail" items="${productDetail1}">
 									<tr>
-										<td>${size.sizeId}</td>
-										<td>${size.sizeName}</td>
+										<td>${productDetail.productDetailId}</td>
+										<td>${productDetail.product.productName}</td>
+										<td>${productDetail.quantity}</td>
+										<td>${productDetail.size.sizeName}</td>
+										<td>${productDetail.color.colorName}</td>
 										<td><a class="btn btn-primary btn-sm trash" type="button"
 											title="Xóa"
-											onclick="confirmDelete('${size.sizeId}')"> <i
+											onclick="confirmDelete('${productDetail.productDetailId}')"> <i
 												class="fas fa-trash-alt"></i>
 										</a> <a class="btn btn-primary btn-sm edit" type="button"
-											href="/size/edit/${size.sizeId}"> <i
+											href="/productDetail/edit/${productDetail.productDetailId}"> <i
 												class="fas fa-edit"></i>
 										</a>
 									</tr>
@@ -98,25 +106,25 @@
 		</div>
 	</main>
 
-
+-->
 
 	<!-- Essential javascripts for application to work-->
-	<script src="<c:url value='../assets/admin/js/jquery-3.2.1.min.js'/>"></script>
-	<script src="<c:url value='../assets/admin/js/popper.min.js'/>"></script>
-	<script src="<c:url value='../assets/admin/js/bootstrap.min.js'/>"></script>
+	<script src="<c:url value='/assets/admin/js/jquery-3.2.1.min.js'/>"></script>
+	<script src="<c:url value='/assets/admin/js/popper.min.js'/>"></script>
+	<script src="<c:url value='/assets/admin/js/bootstrap.min.js'/>"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-	<script src="<c:url value='../assets/admin/js/main.js'/>"></script>
+	<script src="<c:url value='/assets/admin/js/main.js'/>"></script>
 	<!-- The javascript plugin to display page loading on top-->
-	<script src="<c:url value='../assets/admin/js/plugins/pace.min.js'/>" /></script>
+	<script src="<c:url value='/assets/admin/js/plugins/pace.min.js'/>" /></script>
 	<!-- Page specific javascripts-->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 	<!-- Data table plugin-->
 	<script type="text/javascript"
-		src="<c:url value='../assets/admin/js/plugins/jquery.dataTables.min.js'/>" /></script>
+		src="<c:url value='/assets/admin/js/plugins/jquery.dataTables.min.js'/>" /></script>
 	<script type="text/javascript"
-		src="<c:url value='../assets/admin/js/plugins/dataTables.bootstrap.min.js'/>" /></script>
+		src="<c:url value='/assets/admin/js/plugins/dataTables.bootstrap.min.js'/>" /></script>
 	<script type="text/javascript">
         $('#sampleTable').DataTable();
         //Thời Gian
@@ -161,12 +169,12 @@
     }
     </script>
 	<script>
-	function confirmDelete(sizeId) {
+	function confirmDelete(productDetailId) {
 	    var result = confirm("Bạn có chắc chắn muốn xóa không?");
 	    if (result) {
 	        // Sử dụng AJAX để gửi yêu cầu xóa
 	        var xhr = new XMLHttpRequest();
-	        xhr.open("GET", "/size/delete/" + sizeId, true);
+	        xhr.open("GET", "/productDetail/delete/" + productDetailId, true);
 	        xhr.onreadystatechange = function () {
 	            if (xhr.readyState == 4 && xhr.status == 200) {
 	                // Xóa thành công, có thể cập nhật giao diện hoặc thông báo thành công tại đây

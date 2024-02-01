@@ -22,34 +22,37 @@
 				</div>
 				<hr>
 				<ul class="app-menu">
-					<li><a class="app-menu__item" href="/admin/index"><i
+					<li><a class="app-menu__item" href="/admin"><i
 								class='app-menu__icon bx bx-tachometer'></i><span class="app-menu__label">Bảng điều
 								khiển</span></a></li>
-					<li><a class="app-menu__item" href="/admin/customer-management"><i
+					<li><a class="app-menu__item" href="/ShippingInfo"><i
 								class='app-menu__icon bx bx-id-card'></i><span class="app-menu__label">Quản lý khách
 								hàng</span></a></li>
-					<li><a class="app-menu__item" href="/admin/account-management"><i
-								class='app-menu__icon bx bx-cog'></i><span class="app-menu__label">Quản
+					<li><a class="app-menu__item" href="/account"><i class='app-menu__icon bx bx-cog'></i><span
+								class="app-menu__label">Quản
 								lý tài khoản</span></a></li>
-					<li><a class="app-menu__item" href="/admin/product-management"><i
+					<li><a class="app-menu__item" href="/product"><i
 								class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý
 								sản phẩm</span></a></li>
-					<li><a class="app-menu__item" href="/admin/discount-management"><i
-								class='app-menu__icon bx bx-dollar'></i><span class="app-menu__label">Quản lý giảm
-								giá</span></a></li>
-					<li><a class="app-menu__item" href="/admin/order-management"><i
+					<li><a class="app-menu__item" href="/productDetail"><i
+								class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý
+								sản phẩm chi tiết</span></a></li>
+					<!-- <li><a class="app-menu__item" href="/discount"><i
+								class='app-menu__icon bx bx-dollar'></i><span class="app-menu__label">Quản lý
+								giá</span></a></li> -->
+					<li><a class="app-menu__item" href="/order"><i
 								class='app-menu__icon bx bx-task'></i><span class="app-menu__label">Quản
 								lý đơn hàng</span></a></li>
-					<li><a class="app-menu__item" href="/admin/Color-management"><i class='app-menu__icon bx bx-palette'></i><span
+					<li><a class="app-menu__item" href="/color"><i class='app-menu__icon bx bx-palette'></i><span
 								class="app-menu__label">Quản
 								lý màu sắc</span></a></li>
-					<li><a class="app-menu__item" href="/admin/Brand-management"><i class='app-menu__icon bx bx-crown'></i><span
+					<li><a class="app-menu__item" href="/brand"><i class='app-menu__icon bx bx-crown'></i><span
 								class="app-menu__label">Quản
 								lý thương hiệu</span></a></li>
-					<li><a class="app-menu__item" href="/admin/Size-management"><i class='app-menu__icon bx bx-fullscreen'></i><span
+					<li><a class="app-menu__item" href="/size"><i class='app-menu__icon bx bx-fullscreen'></i><span
 								class="app-menu__label">Quản
 								lý kích cỡ</span></a></li>
-					<li><a class="app-menu__item" href="/admin/statistical"><i
+					<li><a class="app-menu__item" href="/statistical"><i
 								class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo
 								doanh thu</span></a></li>
 
