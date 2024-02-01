@@ -101,7 +101,8 @@
                                                                     <a type="button"
                                                                         href="/user/accountOrderDetails/${acOrder.orderId}"
                                                                         class="btn btn-outline-warning">HÓA ĐƠN</a>
-                                                                    <a href="" type="button"
+                                                                    <a href="/user/accountOrderDL/${acOrder.orderId}"
+                                                                        type="button"
                                                                         class="btn btn-outline-warning">HỦY</a>
                                                                 </c:when>
                                                                 <c:when test="${acOrder.orderStatus.statusId == 2}">

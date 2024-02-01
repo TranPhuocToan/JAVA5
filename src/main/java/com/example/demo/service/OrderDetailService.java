@@ -13,5 +13,7 @@ public interface OrderDetailService {
     OrderDetailEntity save(OrderDetailEntity entity);
 
     List<OrderDetailEntity> findByOrderOrderId(Integer id);
+
+    void delete(OrderDetailEntity entity);
     // user
 }

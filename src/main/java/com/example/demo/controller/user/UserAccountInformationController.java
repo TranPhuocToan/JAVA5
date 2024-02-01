@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.model.CartEntity;
 import com.example.demo.model.OrderDetailEntity;
+import com.example.demo.model.OrderEntity;
+import com.example.demo.model.ShippingInfoEntity;
 import com.example.demo.model.UserEntity;
 import com.example.demo.repository.CategoryEntityDAO;
 import com.example.demo.service.CartDetailService;
@@ -19,6 +21,8 @@ import com.example.demo.service.CartService;
 import com.example.demo.service.OrderDetailService;
 import com.example.demo.service.OrderService;
 import com.example.demo.service.SessionService;
+import com.example.demo.service.ShippingInfoService;
+
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -39,6 +43,8 @@ public class UserAccountInformationController {
     CategoryEntityDAO categoryEntityDAO;
     @Autowired
     OrderDetailService orderDetailService;
+    @Autowired
+    ShippingInfoService shippingInfoService;
 
     @GetMapping("/accountOrder")
     public String accountOrder(Model model) {
@@ -51,6 +57,21 @@ public class UserAccountInformationController {
         model.addAttribute("acOrders", orderService.findByUserUserId(user.getUserId()));
         model.addAttribute("cartCount", cartDetailService.countCartDetail(getCartCount()));
         return "user/accountOrder";
+    }
+
+    @GetMapping("/accountOrderDL/{id}")
+    public String accountOrderDL(@PathVariable("id") Integer id, Model model) {
+        List<OrderDetailEntity> orderDetails = orderDetailService.findByOrderOrderId(id);
+        for (OrderDetailEntity orderDt : orderDetails) {
+            orderDetailService.delete(orderDt);
+        }
+        List<ShippingInfoEntity> shippingInfo = shippingInfoService.findByOrderOrderId(id);
+        for (ShippingInfoEntity shipIF : shippingInfo) {
+            shippingInfoService.delete(shipIF);
+        }
+        OrderEntity order = orderService.findByOrderId(id);
+        orderService.delete(order);
+        return "redirect:/user/accountOrder";
     }
 
     public void accountOrderDetail(@PathVariable("id") Integer id, Model model) {
