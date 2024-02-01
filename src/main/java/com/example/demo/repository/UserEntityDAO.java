@@ -13,5 +13,7 @@ public interface UserEntityDAO extends JpaRepository<UserEntity, Integer> {
     List<UserEntity> findByUserName(String userName);
 
     UserEntity getByuserName(String userName);
+    List<UserEntity> findByEmail(String email);
+
 }
     

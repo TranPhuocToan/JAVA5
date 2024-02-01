@@ -29,7 +29,7 @@
                         <div class="col-12">
                             <nav class="breadcrumb bg-light mb-30">
                                 <a class="breadcrumb-item text-dark" href="#">Home</a>
-                                <span class="breadcrumb-item active">Contact</span>
+                                <span class="breadcrumb-item active">AccountInfo</span>
                             </nav>
                         </div>
                     </div>

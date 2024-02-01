@@ -46,7 +46,12 @@ public class UserCartController {
             for (CartDetailEntity cartD : cartDetail) {
                 Amount += cartD.getQuantity() * cartD.getProductDetial().getProduct().getProductPrice();
             }
+            if (sessionService.get("userSession") != null) {
+                UserEntity userSession = sessionService.get("userSession");
+                model.addAttribute("username", userSession.getFullName());
+            }
             model.addAttribute("amount", Amount);
+            model.addAttribute("cartCount", cartDetailService.countCartDetail(getCartCount()));
         }
         return "user/cart";
     }
@@ -80,10 +85,23 @@ public class UserCartController {
 
     @GetMapping("/cartDelete/{id}")
     public String cartDelete(@PathVariable("id") Integer id, Model model) {
+        if (sessionService.get("userSession") != null) {
+            UserEntity user = sessionService.get("userSession");
+            model.addAttribute("username", user.getFullName());
+        }
         Optional<CartDetailEntity> entity = cartDetailService.findById(id);
         cartDetailService.deleteCartDetail(entity.get());
         model.addAttribute("successMessage", "Item deleted successfully");
         return "redirect:/user/cart";
+    }
+
+    public Integer getCartCount() {
+        CartEntity cart = new CartEntity();
+        if (sessionService.get("userSession") != null) {
+            UserEntity user = sessionService.get("userSession");
+            cart = cartService.findByUserUserId(user.getUserId());
+        }
+        return cart.getCartId();
     }
 
 }

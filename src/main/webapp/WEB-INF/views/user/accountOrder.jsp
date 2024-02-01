@@ -32,7 +32,7 @@
                                     <div class="col-12">
                                         <nav class="breadcrumb bg-light mb-30">
                                             <a class="breadcrumb-item text-dark" href="#">Home</a>
-                                            <span class="breadcrumb-item active">Contact</span>
+                                            <span class="breadcrumb-item active">AccountInfo</span>
                                         </nav>
                                     </div>
                                 </div>
@@ -73,17 +73,52 @@
                                                             <fmt:formatNumber type="currency" maxFractionDigits="0"
                                                                 value="${acOrder.totalAmount}" currencyCode="VND" />
                                                         </td>
-                                                        <td class="align-middle"><span style="
-                                                            padding: 10px 20px;
-                                                            background-color: rgb(217, 205, 30);
-                                                            color: white;
-                                                            border-radius: 20px;
-                                                            ">Đang chờ</span></td>
                                                         <td class="align-middle">
-                                                            <a href="" type="button" class="btn btn-outline-warning">HÓA
-                                                                ĐƠN</a>
+                                                            <c:choose>
+                                                                <c:when test="${acOrder.orderStatus.statusId == 1}">
+                                                                    <span style="padding: 10px 20px;
+                                                                            background-color: rgb(217, 205, 30);
+                                                                            color: white;
+                                                                            border-radius: 20px;
+                                                                            ">${acOrder.orderStatus.statusName}</span>
+                                                                </c:when>
+                                                                <c:when test="${acOrder.orderStatus.statusId == 2}">
+                                                                    <span style="
+                                                                        padding: 10px 20px;
+                                                                        background-color: rgb(30, 217, 70);
+                                                                        color: white;
+                                                                        border-radius: 20px;
+                                                                        ">${acOrder.orderStatus.statusName}</span>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <!-- Handle other status values if needed -->
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                        </td>
+                                                        <td class="align-middle">
+                                                            <c:choose>
+                                                                <c:when test="${acOrder.orderStatus.statusId == 1}">
+                                                                    <a type="button"
+                                                                        href="/user/accountOrderDetails/${acOrder.orderId}"
+                                                                        class="btn btn-outline-warning">HÓA ĐƠN</a>
+                                                                    <a href="/user/accountOrderDL/${acOrder.orderId}"
+                                                                        type="button"
+                                                                        class="btn btn-outline-warning">HỦY</a>
+                                                                </c:when>
+                                                                <c:when test="${acOrder.orderStatus.statusId == 2}">
+                                                                    <a type="button"
+                                                                        href="/user/accountOrderDetails/${acOrder.orderId}"
+                                                                        class="btn btn-outline-warning">HÓA ĐƠN</a>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <!-- Handle other status values if needed -->
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                            <!-- <a type="button"
+                                                                href="/user/accountOrderDetails/${acOrder.orderId}"
+                                                                class="btn btn-outline-warning">HÓA ĐƠN</a>
                                                             <a href="" type="button"
-                                                                class="btn btn-outline-warning">HỦY</a>
+                                                                class="btn btn-outline-warning">HỦY</a> -->
                                                         </td>
                                                     </tr>
                                                 </c:forEach>
@@ -119,8 +154,6 @@
                                 <!-- Back to Top -->
                                 <a href="#" class="btn btn-primary back-to-top"><i
                                         class="fa fa-angle-double-up"></i></a>
-
-
                 </body>
 
                 </html>

@@ -14,6 +14,11 @@ public interface OrderService {
     List<OrderEntity> findByUserUserId(Integer userId);
 
     OrderEntity save(OrderEntity order);
+
+    // tim theo id
+    OrderEntity findByOrderId(Integer orderId);
+
+    void delete(OrderEntity order);
     // user
 
 }

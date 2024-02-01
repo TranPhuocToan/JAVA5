@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,4 +23,13 @@ public class ShippingInfoServiceImpl implements ShippingInfoService {
         return shippingInfoEntityDAO.save(entity);
     }
 
+    @Override
+    public List<ShippingInfoEntity> findByOrderOrderId(Integer orderId) {
+        return shippingInfoEntityDAO.findByOrderOrderId(orderId);
+    }
+
+    @Override
+    public void delete(ShippingInfoEntity entity) {
+        shippingInfoEntityDAO.delete(entity);
+    }
 }

@@ -44,9 +44,12 @@
                                 <button type="button" class="btn btn-sm btn-light dropdown-toggle"
                                     data-toggle="dropdown">EN</button>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <button class="dropdown-item" type="button">FR</button>
-                                    <button class="dropdown-item" type="button">AR</button>
-                                    <button class="dropdown-item" type="button">RU</button>
+                                    <button class="dropdown-item" type="button">
+                                        <a class="nav-link text-muted" href="?lang=vi">Tiếng Việt</a>
+                                    </button>
+                                    <button class="dropdown-item" type="button">
+                                        <a class="nav-link text-muted" href="?lang=en">English</a>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -66,27 +69,45 @@
                 </div>
                 <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
                     <div class="col-lg-4">
-                        <a href="" class="text-decoration-none">
+                        <a href="/user/index" class="text-decoration-none">
                             <span class="h1 text-uppercase text-primary bg-dark px-2">Multi</span>
                             <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Shop</span>
                         </a>
                     </div>
                     <div class="col-lg-4 col-6 text-left">
-                        <form action="">
+                        <form action="/user/shop/search" method="post">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search for products">
+                                <input type="text" value="${keywords}" name="keywords" class="form-control"
+                                    placeholder="Search for products">
                                 <div class="input-group-append">
-                                    <span class="input-group-text bg-transparent text-primary">
-                                        <i class="fa fa-search"></i>
-                                    </span>
+                                    <button style="border: none; background: none; padding: 0;">
+                                        <span style="padding: 10px;"
+                                            class="input-group-text bg-transparent text-primary">
+                                            <i class="fa fa-search"></i>
+                                        </span>
+                                    </button>
+
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="col-lg-4 col-6 text-right">
-                        <p class="m-0">Customer Service</p>
-                        <h5 class="m-0">+012 345 6789</h5>
+                        <h5 class="m-0">${username}</h5>
                     </div>
                 </div>
             </div>
             <!-- Topbar End -->
+            <script>
+                $(document).ready(function () {
+                    $("a[href*=lang]").on("click", function () {
+                        var param = $(this).attr("href");
+                        $.ajax({
+                            url: "/home/index" + param,
+                            success: function () {
+                                location.reload();
+                            }
+                        });
+                        return false;
+                    })
+                })
+            </script>

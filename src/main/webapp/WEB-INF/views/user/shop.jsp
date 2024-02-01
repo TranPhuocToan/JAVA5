@@ -50,49 +50,46 @@
                                         <h5 class="section-title position-relative text-uppercase mb-3"><span
                                                 class="bg-secondary pr-3">Filter by price</span></h5>
                                         <div class="bg-light p-4 mb-30">
-                                            <form>
+                                            <form id="filterForm" action="/user/shop" method="post">
                                                 <div
                                                     class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                                                     <input type="checkbox" class="custom-control-input" checked
-                                                        id="price-all">
+                                                        id="price-all" name="priceRange" onclick="handleCheckbox(this)">
                                                     <label class="custom-control-label" for="price-all">All
                                                         Price</label>
                                                     <span class="badge border font-weight-normal">1000</span>
                                                 </div>
                                                 <div
                                                     class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                                    <input type="checkbox" class="custom-control-input" id="price-1">
-                                                    <label class="custom-control-label" for="price-1">$0 - $100</label>
+                                                    <input type="checkbox" class="custom-control-input" id="price-1"
+                                                        name="priceRange" value="4000000-6000000"
+                                                        onclick="handleCheckbox(this)">
+                                                    <label class="custom-control-label"
+                                                        for="price-1">4.000.000-6.000.000</label>
                                                     <span class="badge border font-weight-normal">150</span>
                                                 </div>
                                                 <div
                                                     class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                                    <input type="checkbox" class="custom-control-input" id="price-2">
-                                                    <label class="custom-control-label" for="price-2">$100 -
-                                                        $200</label>
+                                                    <input type="checkbox" class="custom-control-input" id="price-2"
+                                                        name="priceRange" value="6000000-7000000"
+                                                        onclick="handleCheckbox(this)">
+                                                    <label class="custom-control-label" for="price-2">6.000.000-
+                                                        7.000.000</label>
                                                     <span class="badge border font-weight-normal">295</span>
                                                 </div>
-                                                <div
-                                                    class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                                    <input type="checkbox" class="custom-control-input" id="price-3">
-                                                    <label class="custom-control-label" for="price-3">$200 -
-                                                        $300</label>
-                                                    <span class="badge border font-weight-normal">246</span>
-                                                </div>
-                                                <div
-                                                    class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                                    <input type="checkbox" class="custom-control-input" id="price-4">
-                                                    <label class="custom-control-label" for="price-4">$300 -
-                                                        $400</label>
-                                                    <span class="badge border font-weight-normal">145</span>
-                                                </div>
-                                                <div
-                                                    class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                                                    <input type="checkbox" class="custom-control-input" id="price-5">
-                                                    <label class="custom-control-label" for="price-5">$400 -
-                                                        $500</label>
-                                                    <span class="badge border font-weight-normal">168</span>
-                                                </div>
+                                                <!-- Thêm các checkbox khác tương tự cho các khoảng giá khác -->
+
+                                                <!-- Thêm thẻ input để lưu giá trị category được chọn -->
+                                                <input type="hidden" id="selectedCategory" name="selectedCategory"
+                                                    value="${categoryParam}" />
+
+                                                <!-- Thêm thẻ input để lưu giá trị min và max -->
+                                                <input type="hidden" id="minPrice" name="minPrice" value="" />
+                                                <input type="hidden" id="maxPrice" name="maxPrice" value="" />
+
+                                                <!-- Thay đổi type của button sang button để tránh submit form ngay khi click -->
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="submitForm()">Filter</button>
                                             </form>
                                         </div>
                                         <!-- Price End -->
@@ -106,7 +103,7 @@
                                                     class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                                                     <input type="checkbox" class="custom-control-input" checked
                                                         id="color-all">
-                                                    <label class="custom-control-label" for="price-all">All
+                                                    <label class="custom-control-label" for="color-all">All
                                                         Color</label>
                                                     <span class="badge border font-weight-normal">1000</span>
                                                 </div>
@@ -235,8 +232,8 @@
                                                             <img class="img-fluid w-100"
                                                                 src="/images/products/${product.productImages}" alt="">
                                                             <div class="product-action">
-                                                                <a class="btn btn-outline-dark btn-square" href=""><i
-                                                                        class="fa fa-shopping-cart"></i></a>
+                                                                <!-- <a class="btn btn-outline-dark btn-square" href=""><i
+                                                                        class="fa fa-shopping-cart"></i></a> -->
                                                                 <a class="btn btn-outline-dark btn-square" href=""><i
                                                                         class="far fa-heart"></i></a>
                                                                 <a class="btn btn-outline-dark btn-square" href=""><i
@@ -295,22 +292,85 @@
                                                                 </li>
                                                             </c:when>
                                                             <c:otherwise>
-                                                                <li class="page-item">
+                                                                <!-- <li class="page-item">
                                                                     <a class="page-link"
                                                                         href="/user/shop?p=${page.number - 1}">Previous</a>
-                                                                </li>
+                                                                </li> -->
+                                                                <c:choose>
+                                                                    <c:when test="${empty categoryParam}">
+                                                                        <!-- <li class="page-item">
+                                                                            <a class="page-link"
+                                                                                href="/user/shop?p=${page.number - 1}">Previous</a>
+                                                                        </li> -->
+                                                                        <c:choose>
+                                                                            <c:when test="${empty keywords}">
+                                                                                <li class="page-item">
+                                                                                    <a class="page-link"
+                                                                                        href="/user/shop?p=${page.number - 1}">Previous</a>
+                                                                                </li>
+                                                                            </c:when>
+                                                                            <c:otherwise>
+                                                                                <li class="page-item">
+                                                                                    <a class="page-link"
+                                                                                        href="/user/shop/search?p=${page.number - 1}">Previous</a>
+                                                                                </li>
+                                                                            </c:otherwise>
+                                                                        </c:choose>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <li class="page-item">
+                                                                            <a class="page-link"
+                                                                                href="/user/shop?category=${categoryParam}&p=${page.number - 1}">Previous</a>
+                                                                        </li>
+                                                                    </c:otherwise>
+                                                                </c:choose>
                                                             </c:otherwise>
                                                         </c:choose>
 
                                                         <c:forEach var="pageNumber" begin="0"
                                                             end="${page.totalPages - 1}">
-                                                            <li
+                                                            <!-- <li
                                                                 class="page-item ${page.number == pageNumber ? ' active' : '' }">
                                                                 <a class="page-link"
                                                                     href="/user/shop?p=${pageNumber}">${pageNumber
                                                                     + 1}</a>
-
-                                                            </li>
+                                                            </li> -->
+                                                            <c:choose>
+                                                                <c:when test="${empty categoryParam}">
+                                                                    <!-- <li
+                                                                        class="page-item ${page.number == pageNumber ? ' active' : '' }">
+                                                                        <a class="page-link"
+                                                                            href="/user/shop?p=${pageNumber}">${pageNumber
+                                                                            + 1}</a>
+                                                                    </li> -->
+                                                                    <c:choose>
+                                                                        <c:when test="${empty keywords}">
+                                                                            <li
+                                                                                class="page-item ${page.number == pageNumber ? ' active' : '' }">
+                                                                                <a class="page-link"
+                                                                                    href="/user/shop?p=${pageNumber}">${pageNumber
+                                                                                    + 1}</a>
+                                                                            </li>
+                                                                        </c:when>
+                                                                        <c:otherwise>
+                                                                            <li
+                                                                                class="page-item ${page.number == pageNumber ? ' active' : '' }">
+                                                                                <a class="page-link"
+                                                                                    href="/user/shop/search?p=${pageNumber}">${pageNumber
+                                                                                    + 1}</a>
+                                                                            </li>
+                                                                        </c:otherwise>
+                                                                    </c:choose>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <li
+                                                                        class="page-item ${page.number == pageNumber ? ' active' : '' }">
+                                                                        <a class="page-link"
+                                                                            href="/user/shop?category=${categoryParam}&p=${pageNumber}">${pageNumber
+                                                                            + 1}</a>
+                                                                    </li>
+                                                                </c:otherwise>
+                                                            </c:choose>
                                                         </c:forEach>
 
                                                         <c:choose>
@@ -320,10 +380,38 @@
                                                                 </li>
                                                             </c:when>
                                                             <c:otherwise>
-                                                                <li class="page-item">
+                                                                <c:choose>
+                                                                    <c:when test="${empty categoryParam}">
+                                                                        <!-- <li class="page-item">
+                                                                            <a class="page-link"
+                                                                                href="/user/shop?p=${page.number + 1}">Next</a>
+                                                                        </li> -->
+                                                                        <c:choose>
+                                                                            <c:when test="${empty keywords}">
+                                                                                <li class="page-item">
+                                                                                    <a class="page-link"
+                                                                                        href="/user/shop?p=${page.number + 1}">Next</a>
+                                                                                </li>
+                                                                            </c:when>
+                                                                            <c:otherwise>
+                                                                                <li class="page-item">
+                                                                                    <a class="page-link"
+                                                                                        href="/user/shop/search?p=${page.number + 1}">Next</a>
+                                                                                </li>
+                                                                            </c:otherwise>
+                                                                        </c:choose>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <li class="page-item">
+                                                                            <a class="page-link"
+                                                                                href="/user/shop?category=${categoryParam}&p=${page.number + 1}">Next</a>
+                                                                        </li>
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                                                <!-- <li class="page-item">
                                                                     <a class="page-link"
-                                                                        href="/user/shop?p=${page.number - 1}">Next</a>
-                                                                </li>
+                                                                        href="/user/shop?p=${page.number + 1}">Next</a>                                                                  
+                                                                </li> -->
                                                             </c:otherwise>
                                                         </c:choose>
                                                     </ul>
@@ -359,6 +447,57 @@
 
 
                             <%@include file="../../views/user/common/_footer.jsp" %>
+                                <script>
+                                    function handleCheckbox(checkbox) {
+                                        // Nếu checkbox được chọn, bỏ chọn tất cả các checkbox khác
+                                        if (checkbox.checked) {
+                                            document.querySelectorAll('input[name="' + checkbox.name + '"]').forEach(function (otherCheckbox) {
+                                                if (otherCheckbox !== checkbox) {
+                                                    otherCheckbox.checked = false;
+                                                }
+                                            });
+                                        }
+
+                                        // Lấy giá trị category được chọn
+                                        var selectedCategory = Array.from(document.querySelectorAll('input[name="category"]:checked'))
+                                            .map(function (checkbox) {
+                                                return checkbox.value;
+                                            })
+                                            .join(',');
+
+                                        // Lấy giá trị min và max từ giá trị của checkbox khi nó được chọn
+                                        var checkboxValue = checkbox.value;
+                                        var [minPrice, maxPrice] = checkboxValue.split('-');
+
+                                        // Gán giá trị cho input ẩn
+                                        document.getElementById('selectedCategory').value = selectedCategory;
+                                        document.getElementById('minPrice').value = minPrice;
+                                        document.getElementById('maxPrice').value = maxPrice;
+
+
+                                    }
+
+                                    function submitForm() {
+                                        // // Lấy giá trị category được chọn
+                                        // var selectedCategory = Array.from(document.querySelectorAll('input[name="category"]:checked'))
+                                        //     .map(function (checkbox) {
+                                        //         return checkbox.value;
+                                        //     })
+                                        //     .join(',');
+
+                                        // // Lấy giá trị min và max
+                                        // var minPrice = document.querySelector('input[name="minPrice"]').value;
+                                        // var maxPrice = document.querySelector('input[name="maxPrice"]').value;
+
+                                        // // Gán giá trị cho input ẩn
+                                        // document.getElementById('selectedCategory').value = selectedCategory;
+                                        // document.getElementById('minPrice').value = 4000000;
+                                        // document.getElementById('maxPrice').value = 6000000;
+
+                                        // Submit form
+                                        document.getElementById('filterForm').submit();
+                                    }
+                                </script>
                 </body>
 
                 </html>

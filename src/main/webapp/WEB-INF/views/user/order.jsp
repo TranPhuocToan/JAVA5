@@ -143,7 +143,8 @@
                                                     <h6 class="mb-3">Sản phẩm</h6>
                                                     <c:forEach items="${cartDetail}" var="cartItem">
                                                         <div class="d-flex justify-content-between">
-                                                            <p>${cartItem.productDetial.product.productName}</p>
+                                                            <p>${cartItem.productDetial.product.productName} (SL
+                                                                ${cartItem.quantity})</p>
                                                             <p>
                                                                 <fmt:formatNumber type="currency" maxFractionDigits="0"
                                                                     value="${cartItem.productDetial.product.productPrice*cartItem.quantity}"
