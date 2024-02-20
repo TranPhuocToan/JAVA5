@@ -12,5 +12,9 @@ import java.util.Optional;
  * OrderDetailEntityDAO
  */
 public interface OrderDetailEntityDAO extends JpaRepository<OrderDetailEntity, Integer> {
+    
+    
     List<OrderDetailEntity> findByOrderOrderId(Integer orderId);
+
+
 }

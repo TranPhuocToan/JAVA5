@@ -103,7 +103,7 @@ public class UserOrderController {
             OrderEntity order = new OrderEntity(null, new Date(), Amount + 20000, user, orderStatus.get(), null, null);
             orderService.save(order);
 
-            shippingInfo.setOrder(order);
+            shippingInfo.setOrderInfo(order);
             shippingInfoService.save(shippingInfo);
 
             for (CartDetailEntity cartitem : cartDetail) {

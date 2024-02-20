@@ -78,6 +78,7 @@
 									<th>Số lượng</th>
 									<th>Kích cỡ</th>
 									<th>Màu sắc</th>
+									<th>Chức năng</th>
 								</tr>
 							</thead>
 							<tbody>

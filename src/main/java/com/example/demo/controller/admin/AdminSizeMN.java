@@ -43,7 +43,7 @@ public class AdminSizeMN {
     }
 
     @RequestMapping("/create")
-    public String create(Model model, @Validated @ModelAttribute("size") SizeEntity sizeEntity){
+    public String create(Model model, @ModelAttribute("size") SizeEntity sizeEntity){
         sizeEntityDAO.save(sizeEntity);
         return "redirect:/size";
     }

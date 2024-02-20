@@ -75,6 +75,14 @@ public class AdminProductDetailMN {
         return "admin/form-productDetail";
     }
 
+    @RequestMapping("/form-productDetailId/{Id}")
+    public String showPDId(Model model, @PathVariable("Id") Integer Id){
+        List<ProductDetailEntity> productDetailEntity1 = productDetailEntityDAO.findByProductProductId(Id);
+        model.addAttribute("productDetail1", productDetailEntity1);
+        System.out.println(Id);
+        return "admin/productDetail-management";
+    }
+
 
     @RequestMapping("/edit/{productDetailId}")
     public String edit(Model model, @PathVariable("productDetailId") Integer productDetailId){
@@ -87,7 +95,7 @@ public class AdminProductDetailMN {
 
 
     @RequestMapping("/create")                                                            
-    public String create(Model model, @Validated @ModelAttribute("productDetail") ProductDetailEntity productDetailEntity,@Validated @ModelAttribute("color") ColorEntity ColorEntity,@Validated @ModelAttribute("size") SizeEntity sizeEntity,
+    public String create(Model model, @ModelAttribute("productDetail") ProductDetailEntity productDetailEntity,@ModelAttribute("color") ColorEntity ColorEntity, @ModelAttribute("size") SizeEntity sizeEntity,
     BindingResult error){
         productDetailEntityDAO.save(productDetailEntity);
         colorEntityDAO.save(ColorEntity);

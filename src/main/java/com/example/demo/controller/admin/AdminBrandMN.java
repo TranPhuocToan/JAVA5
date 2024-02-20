@@ -44,7 +44,7 @@ public class AdminBrandMN {
     }
 
     @RequestMapping("/create")
-    public String create(Model model, @Validated @ModelAttribute("brand") BrandEntity brandEntity){
+    public String create(Model model, @ModelAttribute("brand") BrandEntity brandEntity){
         brandEntityDAO.save(brandEntity);
 
         return "redirect:/brand";

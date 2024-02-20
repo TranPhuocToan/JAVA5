@@ -22,7 +22,7 @@
 				</div>
 				<hr>
 				<ul class="app-menu">
-					<li><a class="app-menu__item" href="/admin"><i
+					<li><a class="app-menu__item" href="/admin/orderreport"><i
 								class='app-menu__icon bx bx-tachometer'></i><span class="app-menu__label">Bảng điều
 								khiển</span></a></li>
 					<li><a class="app-menu__item" href="/ShippingInfo"><i
@@ -40,7 +40,7 @@
 					<!-- <li><a class="app-menu__item" href="/discount"><i
 								class='app-menu__icon bx bx-dollar'></i><span class="app-menu__label">Quản lý
 								giá</span></a></li> -->
-					<li><a class="app-menu__item" href="/order"><i
+					<li><a class="app-menu__item" href="/order/orderreport"><i
 								class='app-menu__icon bx bx-task'></i><span class="app-menu__label">Quản
 								lý đơn hàng</span></a></li>
 					<li><a class="app-menu__item" href="/color"><i class='app-menu__icon bx bx-palette'></i><span

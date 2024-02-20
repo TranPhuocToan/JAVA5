@@ -82,7 +82,7 @@
 										<td>${size.sizeName}</td>
 										<td><a class="btn btn-primary btn-sm trash" type="button"
 											title="Xóa"
-											onclick="confirmDelete('${size.sizeId}')"> <i
+											onclick="confirmDelete('${size.sizeId}')"><i
 												class="fas fa-trash-alt"></i>
 										</a> <a class="btn btn-primary btn-sm edit" type="button"
 											href="/size/edit/${size.sizeId}"> <i

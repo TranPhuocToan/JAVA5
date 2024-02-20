@@ -25,7 +25,7 @@ public class ShippingInfoServiceImpl implements ShippingInfoService {
 
     @Override
     public List<ShippingInfoEntity> findByOrderOrderId(Integer orderId) {
-        return shippingInfoEntityDAO.findByOrderOrderId(orderId);
+        return shippingInfoEntityDAO.findByOrderInfoOrderId(orderId);
     }
 
     @Override

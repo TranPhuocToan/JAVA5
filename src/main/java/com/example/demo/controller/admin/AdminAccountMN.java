@@ -2,15 +2,17 @@ package com.example.demo.controller.admin;
 
 
 import java.util.List;
-
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 
 import com.example.demo.repository.UserEntityDAO;
+import com.example.demo.model.ShippingInfoEntity;
 import com.example.demo.model.UserEntity;
 
 
@@ -36,29 +38,18 @@ public class AdminAccountMN {
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable("id") Integer id){
         UserEntity userEntity = UserEntityDAO.findById(id).get();
-         UserEntity userName = UserEntityDAO.getByuserName(userEntity.getUserName());
+        UserEntity userName = UserEntityDAO.getByuserName(userEntity.getUserName());
        
         model.addAttribute("account", userEntity);
         return "/admin/form-account";
     }
 
     @RequestMapping("/update")
-    public String update(){
-        UserEntity userEntity = new UserEntity();
-        Integer id = userEntity.getUserId();
-        String username = userEntity.getUserName();
-        String fullname = userEntity.getFullName();
-        String email = userEntity.getEmail();
-        System.out.println("username>> " + username);
-        System.out.println("fullname>> " +fullname);
-        System.out.println("email>> " +email);
-        UserEntity user = new UserEntity();
-        user.setEmail(email);
-        user.setFullName(fullname);
-        user.setUserName(username);
-        UserEntityDAO.save(user);
+    public String update(@ModelAttribute("account") UserEntity account,Model model){
+        UserEntity u = UserEntityDAO.findById(account.getUserId()).orElseThrow();
+        u.setUserRole(account.getUserRole());
+        UserEntityDAO.save(u);
         return "redirect:/account";
-
     }
 
     @RequestMapping("/detele/{id}")

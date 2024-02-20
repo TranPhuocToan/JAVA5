@@ -44,7 +44,7 @@ public class AdminColorMN {
     }
 
     @RequestMapping("/create")
-    public String create(Model model, @Validated @ModelAttribute("color") ColorEntity colorEntity){
+    public String create(Model model, @ModelAttribute("color") ColorEntity colorEntity){
         colorEntityDAO.save(colorEntity);
         return "redirect:/color";
     }
