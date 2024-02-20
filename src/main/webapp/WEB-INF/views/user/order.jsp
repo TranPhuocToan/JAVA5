@@ -30,7 +30,6 @@
                         <%@include file="../../views/user/common/_navbar.jsp" %>
                             <!-- Navbar End -->
 
-
                             <!-- Breadcrumb Start -->
                             <div class="container-fluid">
                                 <div class="row px-xl-5">
@@ -58,19 +57,19 @@
                                                     <div class="col-md-6 form-group">
                                                         <label>HỌ VÀ TÊN</label>
                                                         <form:input path="shippingName" class="form-control" type="text"
-                                                            placeholder="John" />
+                                                            placeholder="John" value="${user.fullName}" />
                                                         <form:errors path="shippingName" cssClass="msg" />
                                                     </div>
                                                     <div class="col-md-6 form-group">
                                                         <label>SỐ ĐIỆN THOẠI</label>
                                                         <form:input path="shippingSdt" class="form-control" type="text"
-                                                            placeholder="+123 456 789" />
+                                                            placeholder="+123 456 789" value="" />
                                                         <form:errors path="shippingSdt" cssClass="msg" />
                                                     </div>
                                                     <div class="col-md-6 form-group">
                                                         <label>ĐỊA CHỈ NHẬN HÀNG</label>
                                                         <form:input path="shippingAddress" class="form-control"
-                                                            type="text" placeholder="123 Street" />
+                                                            type="text" placeholder="123 Street" value="" />
                                                         <form:errors path="shippingAddress" cssClass="msg" />
                                                     </div>
                                                 </div>
@@ -211,7 +210,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="custom-control custom-radio">
-                                                            <input type="radio" class="custom-control-input"
+                                                            <input checked type="radio" class="custom-control-input"
                                                                 name="payment" id="directcheck">
                                                             <label class="custom-control-label" for="directcheck">TRỰC
                                                                 TIẾP</label>
@@ -333,6 +332,8 @@
 
 
                             <%@include file="../../views/user/common/_footer.jsp" %>
+
+
                 </body>
 
                 </html>

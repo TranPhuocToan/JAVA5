@@ -100,7 +100,7 @@
                                                                 <c:when test="${acOrder.orderStatus.statusId == 1}">
                                                                     <a type="button"
                                                                         href="/user/accountOrderDetails/${acOrder.orderId}"
-                                                                        class="btn btn-outline-warning">HÓA ĐƠN</a>
+                                                                        class="btn btn-outline-warning">CHI TIẾT</a>
                                                                     <a href="/user/accountOrderDL/${acOrder.orderId}"
                                                                         type="button"
                                                                         class="btn btn-outline-warning">HỦY</a>
@@ -108,7 +108,7 @@
                                                                 <c:when test="${acOrder.orderStatus.statusId == 2}">
                                                                     <a type="button"
                                                                         href="/user/accountOrderDetails/${acOrder.orderId}"
-                                                                        class="btn btn-outline-warning">HÓA ĐƠN</a>
+                                                                        class="btn btn-outline-warning">CHI TIẾT</a>
                                                                 </c:when>
                                                                 <c:otherwise>
                                                                     <!-- Handle other status values if needed -->

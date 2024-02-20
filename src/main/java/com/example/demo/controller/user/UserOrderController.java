@@ -59,6 +59,10 @@ public class UserOrderController {
         UserEntity user = sessionService.get("userSession");
         CartEntity cart = cartService.findByUserUserId(user.getUserId());
         List<CartDetailEntity> cartDetail = cartDetailService.findCartCartId(cart.getCartId());
+        if (cartDetail.isEmpty()) {
+            model.addAttribute("errorMessage", "Không có sản phẩm nào trong giỏ hàng !");
+            return "forward:/user/cart";
+        }
         model.addAttribute("cartDetail", cartDetail);
         double Amount = 0;
         for (CartDetailEntity cartD : cartDetail) {
@@ -66,6 +70,7 @@ public class UserOrderController {
         }
         model.addAttribute("cartCount", cartDetailService.countCartDetail(getCartCount()));
         model.addAttribute("amount", Amount);
+        model.addAttribute("user", sessionService.get("userSession"));
         return "user/order";
     }
 
@@ -89,21 +94,11 @@ public class UserOrderController {
             model.addAttribute("cartCount", cartDetailService.countCartDetail(getCartCount()));
             return "user/order";
         } else {
-            // UserEntity user = sessionService.get("userSession");
-            // CartEntity cart = cartService.findByUserUserId(user.getUserId());
-            // List<CartDetailEntity> cartDetail =
-            // cartDetailService.findCartCartId(cart.getCartId());
-            // model.addAttribute("cartDetail", cartDetail);
-            // double Amount = 0;
-            // for (CartDetailEntity cartD : cartDetail) {
-            // Amount += cartD.getQuantity() *
-            // cartD.getProductDetial().getProduct().getProductPrice();
-            // }
             Optional<OrderStatusEntity> orderStatus = orderStatusService.findById(1);
             OrderEntity order = new OrderEntity(null, new Date(), Amount + 20000, user, orderStatus.get(), null, null);
             orderService.save(order);
 
-            shippingInfo.setOrder(order);
+            shippingInfo.setOrderInfo(order);
             shippingInfoService.save(shippingInfo);
 
             for (CartDetailEntity cartitem : cartDetail) {

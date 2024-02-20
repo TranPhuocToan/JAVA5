@@ -10,5 +10,5 @@ import java.util.List;
  * ShippingInfoEntityDAO
  */
 public interface ShippingInfoEntityDAO extends JpaRepository<ShippingInfoEntity, Integer> {
-    List<ShippingInfoEntity> findByOrderOrderId(Integer orderId);
+    List<ShippingInfoEntity> findByOrderInfoOrderId(Integer orderId);
 }

@@ -143,7 +143,7 @@
                                                     <c:when test="${userSession==null}">
                                                         <a href="/account/login" type="button"
                                                             class="btn btn-primary px-3">
-                                                            Sign In
+                                                            <i class="fa fa-shopping-cart mr-1"></i> Add To Cart
                                                         </a>
                                                     </c:when>
                                                     <c:otherwise>

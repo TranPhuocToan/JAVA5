@@ -42,7 +42,7 @@ public class OrderEntity {
     List<OrderDetailEntity> orderDetail;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "orderInfo")
     List<ShippingInfoEntity> shippingInfo;
 
 }
