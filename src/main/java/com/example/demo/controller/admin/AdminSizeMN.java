@@ -1,6 +1,7 @@
 package com.example.demo.controller.admin;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.model.SizeEntity;
 import com.example.demo.repository.SizeEntityDAO;
@@ -45,6 +47,29 @@ public class AdminSizeMN {
     @RequestMapping("/create")
     public String create(Model model, @ModelAttribute("size") SizeEntity sizeEntity){
         sizeEntityDAO.save(sizeEntity);
+        return "redirect:/size";
+    }
+
+    @RequestMapping("/delete/{sizeId}")
+    public String delete(@PathVariable("sizeId") Integer sizeId, RedirectAttributes redirectAttributes) {
+        Optional<SizeEntity> sizeOptional = sizeEntityDAO.findById(sizeId);
+        
+        if (sizeOptional.isPresent()) {
+            SizeEntity sizeEntity = sizeOptional.get();
+            
+            // Kiểm tra xem có sản phẩm nào liên kết với kích thước không
+            if (!sizeEntity.getProductDetail().isEmpty()) {
+                // Nếu có, không xóa và thông báo lỗi
+                redirectAttributes.addFlashAttribute("error", "Không thể xóa kích thước này vì có sản phẩm đang liên kết với nó.");
+            } else {
+                // Nếu không có sản phẩm liên kết, xóa kích thước
+                sizeEntityDAO.deleteById(sizeId);
+                redirectAttributes.addFlashAttribute("success", "Kích thước đã được xóa thành công.");
+            }
+        } else {
+            redirectAttributes.addFlashAttribute("error", "Không tìm thấy kích thước.");
+        }
+        
         return "redirect:/size";
     }
 }

@@ -97,9 +97,10 @@ public class AdminProductDetailMN {
     @RequestMapping("/create")                                                            
     public String create(Model model, @ModelAttribute("productDetail") ProductDetailEntity productDetailEntity,@ModelAttribute("color") ColorEntity ColorEntity, @ModelAttribute("size") SizeEntity sizeEntity,
     BindingResult error){
+        productDetailEntity.setColor(ColorEntity);
+        productDetailEntity.setSize(sizeEntity);
         productDetailEntityDAO.save(productDetailEntity);
-        colorEntityDAO.save(ColorEntity);
-        sizeEntityDAO.save(sizeEntity);
+
         model.addAttribute("productDetail", new ProductDetailEntity());
         model.addAttribute("color", new ColorEntity());
         model.addAttribute("size", new SizeEntity());
@@ -119,5 +120,11 @@ public class AdminProductDetailMN {
         List<ColorEntity> colors = colorEntityDAO.findAll();
         List<String> ColorIds = colors.stream().map(ColorEntity::getColorName).collect(Collectors.toList());
         return ColorIds;
+    }
+
+    @RequestMapping("/delete/{productDetailId}")
+    public String deletePD(@PathVariable("productDetailId") Integer productDetailId){
+        productDetailEntityDAO.deleteById(productDetailId);
+        return "redirect:/productDetail";
     }
 }

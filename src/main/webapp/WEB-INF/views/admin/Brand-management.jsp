@@ -80,11 +80,7 @@
 									<tr>
 										<td>${brand.brandId}</td>
 										<td>${brand.brandName}</td>
-										<td><a class="btn btn-primary btn-sm trash" type="button"
-											title="Xóa"
-											onclick="confirmDelete('${brand.brandId}')"> <i
-												class="fas fa-trash-alt"></i>
-										</a> <a class="btn btn-primary btn-sm edit" type="button"
+										<td><a class="btn btn-primary btn-sm edit" type="button"
 											href="/brand/edit/${brand.brandId}"> <i
 												class="fas fa-edit"></i>
 										</a>
@@ -159,24 +155,6 @@
         return i;
       }
     }
-    </script>
-	<script>
-	function confirmDelete(productId) {
-	    var result = confirm("Bạn có chắc chắn muốn xóa không?");
-	    if (result) {
-	        // Sử dụng AJAX để gửi yêu cầu xóa
-	        var xhr = new XMLHttpRequest();
-	        xhr.open("GET", "/brand/delete/" + brandId, true);
-	        xhr.onreadystatechange = function () {
-	            if (xhr.readyState == 4 && xhr.status == 200) {
-	                // Xóa thành công, có thể cập nhật giao diện hoặc thông báo thành công tại đây
-	                // Ví dụ: reload trang
-	                window.location.reload();
-	            }
-	        };
-	        xhr.send();
-	    }
-	}
     </script>
 </body>
 </html>

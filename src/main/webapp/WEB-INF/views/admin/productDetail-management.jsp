@@ -70,6 +70,14 @@
 									class="fas fa-file-pdf"></i> Xuất PDF</a>
 							</div>
 						</div>
+						<!-- <div id="deleteForm" style="display: none;">
+							<form id="deleteProductForm" action="/productDetail/delete" method="post">
+								<input type="hidden" id="productDetailIdToDelete" name="productDetailId">
+								<label for="quantityToDelete">Nhập số lượng cần xóa:</label>
+								<input type="number" id="quantityToDelete" name="quantity" min="1">
+								<input type="submit" value="Xóa">
+							</form>
+						</div> -->
 						<table class="table table-hover table-bordered" id="sampleTable">
 							<thead>
 								<tr>
@@ -91,7 +99,7 @@
 										<td>${productDetail.color.colorName}</td>
 										<td><a class="btn btn-primary btn-sm trash" type="button"
 											title="Xóa"
-											onclick="confirmDelete('${productDetail.productDetailId}')"> <i
+											onclick="confirmDelete('${productDetail.productDetailId}')"><i
 												class="fas fa-trash-alt"></i>
 										</a> <a class="btn btn-primary btn-sm edit" type="button"
 											href="/productDetail/edit/${productDetail.productDetailId}"> <i
@@ -107,7 +115,6 @@
 		</div>
 	</main>
 
--->
 
 	<!-- Essential javascripts for application to work-->
 	<script src="<c:url value='/assets/admin/js/jquery-3.2.1.min.js'/>"></script>
@@ -171,6 +178,9 @@
     </script>
 	<script>
 	function confirmDelete(productDetailId) {
+		// document.getElementById("productDetailIdToDelete").value = productDetailId;
+        // // Hiển thị form
+        // document.getElementById("deleteForm").style.display = "block";
 	    var result = confirm("Bạn có chắc chắn muốn xóa không?");
 	    if (result) {
 	        // Sử dụng AJAX để gửi yêu cầu xóa
@@ -187,5 +197,6 @@
 	    }
 	}
     </script>
+
 </body>
 </html>
