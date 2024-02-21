@@ -28,7 +28,6 @@
                         <%@include file="../../views/user/common/_navbar.jsp" %>
                             <!-- Navbar End -->
 
-
                             <!-- Breadcrumb Start -->
                             <div class="container-fluid">
                                 <div class="row px-xl-5">
@@ -45,6 +44,9 @@
 
                             <!-- Cart Start -->
                             <div class="container-fluid">
+                                <c:if test="${not empty errorMessage}">
+                                    <div class="alert alert-danger" role="alert">${errorMessage}</div>
+                                </c:if>
                                 <div class="row px-xl-5">
                                     <div class="col-lg-8 table-responsive mb-5">
                                         <table class="table table-light table-borderless table-hover text-center mb-0">
