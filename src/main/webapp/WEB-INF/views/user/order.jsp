@@ -47,7 +47,8 @@
 
                             <!-- Checkout Start -->
                             <div class="container-fluid">
-                                <form:form action="/user/order/add" method="post" modelAttribute="shippingInfo">
+                                <form:form id="addToOrderForm" action="/user/order/add" method="post"
+                                    modelAttribute="shippingInfo">
                                     <div class="row px-xl-5">
                                         <div class="col-lg-8">
                                             <h5 class="section-title position-relative text-uppercase mb-3"><span
@@ -56,20 +57,23 @@
                                                 <div class="row">
                                                     <div class="col-md-6 form-group">
                                                         <label>HỌ VÀ TÊN</label>
-                                                        <form:input path="shippingName" class="form-control" type="text"
-                                                            placeholder="John" value="${user.fullName}" />
+                                                        <form:input path="shippingName" name="shippingName"
+                                                            class="form-control" type="text" placeholder="John"
+                                                            value="${user.fullName}" />
                                                         <form:errors path="shippingName" cssClass="msg" />
                                                     </div>
                                                     <div class="col-md-6 form-group">
                                                         <label>SỐ ĐIỆN THOẠI</label>
-                                                        <form:input path="shippingSdt" class="form-control" type="text"
-                                                            placeholder="+123 456 789" value="" />
+                                                        <form:input path="shippingSdt" name="shippingSdt"
+                                                            class="form-control" type="text" placeholder="+123 456 789"
+                                                            value="" />
                                                         <form:errors path="shippingSdt" cssClass="msg" />
                                                     </div>
                                                     <div class="col-md-6 form-group">
                                                         <label>ĐỊA CHỈ NHẬN HÀNG</label>
-                                                        <form:input path="shippingAddress" class="form-control"
-                                                            type="text" placeholder="123 Street" value="" />
+                                                        <form:input path="shippingAddress" name="shippingAddress"
+                                                            class="form-control" type="text" placeholder="123 Street"
+                                                            value="" />
                                                         <form:errors path="shippingAddress" cssClass="msg" />
                                                     </div>
                                                 </div>
@@ -216,7 +220,7 @@
                                                                 TIẾP</label>
                                                         </div>
                                                     </div>
-                                                    <button type="submit"
+                                                    <button type="button" onclick="addToOrder()"
                                                         class="btn btn-block btn-primary font-weight-bold py-3">ĐẶT
                                                         HÀNG</button>
                                                 </div>
@@ -333,7 +337,26 @@
 
                             <%@include file="../../views/user/common/_footer.jsp" %>
 
+                                <script>
+                                    function addToOrder() {
+                                        var shippingName = $("input[name='shippingName']").val();
+                                        var shippingSdt = $("input[name='shippingSdt']").val();
+                                        var shippingAddress = $("input[name='shippingAddress']").val();
 
+                                        var success = shippingName !== "" && shippingSdt !== "" && shippingAddress !== "";
+
+                                        if (success) {
+                                            // Show success message
+                                            Swal.fire('Thêm Thành Công!', 'Khách hàng đã mua thành công.', 'success');
+                                            setTimeout(function () {
+                                                $('#addToOrderForm').submit();
+                                            }, 2000);
+
+                                        } else {
+                                            $('#addToOrderForm').submit();
+                                        }
+                                    }
+                                </script>
                 </body>
 
                 </html>

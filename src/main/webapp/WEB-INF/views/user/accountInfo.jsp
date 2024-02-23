@@ -39,6 +39,12 @@
 
                 <!-- Contact Start -->
                 <div class="container-fluid">
+                    <c:if test="${not empty errorMessage}">
+                        <div class="alert alert-danger" role="alert">${errorMessage}</div>
+                    </c:if>
+                    <c:if test="${not empty successMessage}">
+                        <div class="alert alert-success" role="alert">${successMessage}</div>
+                    </c:if>
                     <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span
                             class="bg-secondary pr-3">TÀI KHOẢN</span></h2>
                     <div class="row px-xl-5">
@@ -46,24 +52,28 @@
                             <%@include file="../../views/user/common/_accountList.jsp" %>
                         </div>
                         <div class="col-lg-9 mb-5">
-                            <div class="row">
-                                <div class="col-md-6 form-group">
-                                    <label>First Name</label>
-                                    <input class="form-control" type="text" placeholder="John">
-                                </div>
+                            <form action="/user/accountInfoPost" method="post">
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <label>Full Name</label>
+                                        <input class="form-control" name="fullname" type="text" placeholder="John"
+                                            value="${user.fullName}">
+                                    </div>
 
-                                <div class="col-md-6 form-group">
-                                    <label>E-mail</label>
-                                    <input class="form-control" type="text" placeholder="example@email.com">
+                                    <div class="col-md-6 form-group">
+                                        <label>E-mail</label>
+                                        <input class="form-control" name="email" type="email"
+                                            placeholder="example@email.com" value="${user.email}">
+                                    </div>
+                                    <button style="
+                                    border: none; 
+                                    margin: 18px;
+                                    border-radius: 10px;
+                                    padding: 10px;
+                                    background-color: #ffd333;
+                                    ">Cập nhật</button>
                                 </div>
-                                <button style="
-                                border: none; 
-                                margin: 18px;
-                                border-radius: 10px;
-                                padding: 10px;
-                                background-color: #ffd333;
-                                ">Cập nhật</button>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>

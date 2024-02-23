@@ -16,14 +16,18 @@ import com.example.demo.model.OrderEntity;
 import com.example.demo.model.ShippingInfoEntity;
 import com.example.demo.model.UserEntity;
 import com.example.demo.repository.CategoryEntityDAO;
+import com.example.demo.repository.UserEntityDAO;
 import com.example.demo.service.CartDetailService;
 import com.example.demo.service.CartService;
 import com.example.demo.service.OrderDetailService;
 import com.example.demo.service.OrderService;
+import com.example.demo.service.ParamService;
 import com.example.demo.service.SessionService;
 import com.example.demo.service.ShippingInfoService;
 
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * UserAccountInformationController
@@ -45,6 +49,10 @@ public class UserAccountInformationController {
     OrderDetailService orderDetailService;
     @Autowired
     ShippingInfoService shippingInfoService;
+    @Autowired
+    ParamService paramService;
+    @Autowired
+    UserEntityDAO userEntityDAO;
 
     @GetMapping("/accountOrder")
     public String accountOrder(Model model) {
@@ -79,18 +87,50 @@ public class UserAccountInformationController {
 
     }
 
-    @GetMapping("/accountInfo")
+    @RequestMapping("/accountInfo")
     public String accountInfo(Model model) {
+        UserEntity userSession = null;
         if (sessionService.get("userSession") != null) {
-            UserEntity userSession = sessionService.get("userSession");
+            userSession = sessionService.get("userSession");
             model.addAttribute("username", userSession.getFullName());
         }
         model.addAttribute("categories", categoryEntityDAO.findAll());
         model.addAttribute("cartCount", cartDetailService.countCartDetail(getCartCount()));
+        model.addAttribute("user", userSession);
         return "user/accountInfo";
     }
 
-    @GetMapping("/accountChPassword")
+    @PostMapping("/accountInfoPost")
+    public String accountInfoPost(Model model) {
+        String fullName = paramService.getString("fullname", "");
+        String email = paramService.getString("email", "");
+        UserEntity u = sessionService.get("userSession");
+        if (fullName.equals("") || email.equals("")) {
+            model.addAttribute("errorMessage", "Nhập đầy đủ thông tin !");
+            return "user/accountInfo";
+        }
+        try {
+            int number = Integer.parseInt(fullName);
+            model.addAttribute("errorMessage", "FullName phải chứa chữ và số !");
+            return "user/accountInfo";
+        } catch (Exception e) {
+
+        }
+        List<UserEntity> user = userEntityDAO.findAll();
+        for (UserEntity userEntity : user) {
+            if (userEntity.getEmail().equals(email) && !userEntity.getUserId().equals(u.getUserId())) {
+                model.addAttribute("errorMessage", "Email đã tồn tại !");
+                return "forward:/user/accountInfo";
+            }
+        }
+        u.setFullName(fullName);
+        u.setEmail(email);
+        userEntityDAO.save(u);
+        model.addAttribute("successMessage", "Đổi thông tin thành công !");
+        return "forward:/user/accountInfo";
+    }
+
+    @RequestMapping("/accountChPassword")
     public String accountChPassword(Model model) {
         if (sessionService.get("userSession") != null) {
             UserEntity userSession = sessionService.get("userSession");

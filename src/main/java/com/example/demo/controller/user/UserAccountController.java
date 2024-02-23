@@ -22,6 +22,7 @@ import com.example.demo.service.ParamService;
 import com.example.demo.service.SessionService;
 import com.example.demo.service.UserService;
 import com.example.demo.service.impl.MailerServiceImpl;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequestMapping("/account")
@@ -132,4 +133,37 @@ public class UserAccountController {
         System.out.println(email);
         return "user/forgotPass";
     }
+
+    @PostMapping("/changePassword")
+    public String changePassword(Model model) {
+        String oldPass = paramService.getString("oldPass", "");
+        String newPass = paramService.getString("newPass", "");
+        String confirm = paramService.getString("confirm", "");
+        System.out.println(oldPass + " " + newPass + " " + confirm);
+
+        UserEntity userSession = sessionService.get("userSession");
+
+        if (oldPass.equalsIgnoreCase("") || newPass.equals("") || confirm.equals("")) {
+            model.addAttribute("errorMessage", "Vui lòng nhập đầy đủ thông tin !");
+            return "user/accountChPassword";
+        }
+        if (!userSession.getPassWord().equals(oldPass)) {
+            model.addAttribute("errorMessage", "Nhập mật khẩu cũ không đúng !");
+            return "user/accountChPassword";
+        }
+
+        if (!newPass.equals(confirm)) {
+            model.addAttribute("errorMessage", "Nhập mật khẩu xác nhận không đúng !");
+            model.addAttribute("oldPass", oldPass);
+            model.addAttribute("newPass", newPass);
+            return "forward:/user/accountChPassword";
+        }
+
+        UserEntity user = userEntityDAO.findById(userSession.getUserId()).orElseThrow();
+        user.setPassWord(confirm);
+        userEntityDAO.save(user);
+        model.addAttribute("successMessage", "Đổi mật khẩu thành công !");
+        return "user/accountChPassword";
+    }
+
 }
