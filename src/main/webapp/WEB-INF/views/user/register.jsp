@@ -137,7 +137,7 @@
     <body>
       <div class="form-container" style="margin: 60px auto;">
         <p class="title">Create account</p>
-        <p class="sub-title">Let's get statred with your 30 days free trial</p>
+        <p class="sub-title msg" style="font-size: 12px;">${message}</p>
         <form:form class="form" action="/account/register" method="post" modelAttribute="user">
           <form:input path="userName" type="text" class="input" placeholder="User name" />
           <form:errors path="userName" cssClass="msg"></form:errors>

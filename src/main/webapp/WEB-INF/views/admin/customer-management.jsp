@@ -6,10 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Quản Lý Khách Hàng</title>
 <!-- Main CSS-->
 <link rel="stylesheet" type="text/css"
-	href="<c:url value='../assets/admin/css/main.css'/>" />
+	href="<c:url value='/assets/admin/css/main.css'/>" />
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 <!-- or -->
@@ -76,35 +76,25 @@
 								<tr>
 									<th>ID Khách hàng</th>
 									<th width="150">Họ và tên</th>
-									<th width="20">Ảnh</th>
-									<th width="300">Địa chỉ</th>
-									<th>Ngày sinh</th>
-									<th>Giới tính</th>
-									<th>SĐT</th>
-									<th>Email</th>
+									<th>Địa Chỉ</th>
+									<th>Số điện thoại</th>
 									<th width="100">Tính năng</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="customer" items="${customers}">
+								<c:forEach var="ShippingInfo" items="${ShippingInfo}">
 									<tr>
-										<td>1</td>
-										<td>1</td>
-										<td><img class="img-card-person"
-											src="<c:url value="../assets/admin/img/customers/1"/>"
-											alt=""></td>
-										<td>1</td>
-										<td>1</td>
-										<td>1</td>
-										<td>1</td>
-										<td>1</td>
+										<td>${ShippingInfo.shippingId}</td>
+										<td>${ShippingInfo.shippingName}</td>
+										<td>${ShippingInfo.shippingAddress}</td>
+										<td>${ShippingInfo.shippingSdt}</td>
 										<td class="table-td-center"><a
 											class="btn btn-primary btn-sm trash" type="button"
 											title="Xóa"
-											onclick="confirmDelete('1')"> <i
+											onclick="confirmDelete('${ShippingInfo.shippingId}')"> <i
 												class="fas fa-trash-alt"></i>
 										</a> <a class="btn btn-primary btn-sm edit" type="button"
-											href="/customer/edit/1"> <i
+											href="/ShippingInfo/edit/{ShippingInfo.shippingId}"> <i
 												class="fas fa-edit"></i>
 										</a></td>
 
@@ -129,17 +119,17 @@
 		crossorigin="anonymous"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-	<script src="<c:url value='../assets/admin/js/main.js'/>"></script>
+	<script src="<c:url value='/assets/admin/js/main.js'/>"></script>
 	<!-- The javascript plugin to display page loading on top-->
-	<script src="<c:url value='../assets/admin/js/plugins/pace.min.js'/>" /></script>
+	<script src="<c:url value='/assets/admin/js/plugins/pace.min.js'/>" /></script>
 	<!-- Page specific javascripts-->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 	<!-- Data table plugin-->
 	<script type="text/javascript"
-		src="<c:url value='../assets/admin/js/plugins/jquery.dataTables.min.js'/>" /></script>
+		src="<c:url value='/assets/admin/js/plugins/jquery.dataTables.min.js'/>" /></script>
 	<script type="text/javascript"
-		src="<c:url value='../assets/admin/js/plugins/dataTables.bootstrap.min.js'/>" /></script>
+		src="<c:url value='/assets/admin/js/plugins/dataTables.bootstrap.min.js'/>" /></script>
 	<script type="text/javascript">
 		$('#sampleTable').DataTable();
 	</script>
@@ -194,12 +184,12 @@
 			}
 		}
 
-		function confirmDelete(customerId) {
+		function confirmDelete(userId) {
 			var result = confirm("Bạn có chắc chắn muốn xóa không?");
 			if (result) {
 				// Sử dụng AJAX để gửi yêu cầu xóa
 				var xhr = new XMLHttpRequest();
-				xhr.open("GET", "/customer/delete/" + customerId, true);
+				xhr.open("GET", "/ShippingInfo/delete/" + shippingIduserId, true);
 				xhr.onreadystatechange = function() {
 					if (xhr.readyState == 4 && xhr.status == 200) {
 						// Xóa thành công, có thể cập nhật giao diện hoặc thông báo thành công tại đây

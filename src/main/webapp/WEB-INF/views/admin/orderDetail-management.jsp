@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="jakarta.tags.core" prefix="c"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Quản Lý Chi Tiết Đơn Hàng</title>
 <!-- Main CSS-->
 <link rel="stylesheet" type="text/css"
-	href="<c:url value='../assets/admin/css/main.css'/>" />
+	href="<c:url value='/assets/admin/css/main.css'/>" />
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 <!-- or -->
@@ -36,7 +36,7 @@
 		<div class="app-title">
 			<ul class="app-breadcrumb breadcrumb side">
 				<li class="breadcrumb-item active"><a href="#"><b>Danh
-							sách đơn hàng</b></a></li>
+							sách chi tiết đơn hàng</b></a></li>
 			</ul>
 			<div id="clock"></div>
 		</div>
@@ -66,101 +66,62 @@
 									class="fas fa-file-pdf"></i> Xuất PDF</a>
 							</div>
 						</div>
-						<table class="table table-hover table-bordered" id="sampleTable">
-							<thead>
-
-								<tr>
-									<th>ID đơn hàng</th>
-									<th>Khách hàng</th>
-									<th>Tên sản phẩm</th>
-									<th>Giá tiền</th>
-									<th>Số lượng</th>
-									<th>Tổng tiền</th>
-									<th>Ngày đặt hàng</th>
-									<th>Tình trạng</th>
-								</tr>
-
-							</thead>
-							<tbody>
-								<c:forEach var="orderDetail" items="${orderDetails}">
-									<tr>
-										<td>${orderDetail.orders.order_id}</td>
-										<td>${orderDetail.orders.customers.name}</td>
-									 	<td>${orderDetail.products.product_name}</td>
-										<td>${orderDetail.products.product_price}</td>
-										<td>${orderDetail.quantity_ordered}</td>
-										<td>${orderDetail.orders.total_price}</td>
-										<td>${orderDetail.orders.order_date}</td>
-										<td>${orderDetail.orders.status}</td>
-									</tr>
-								</c:forEach>
-
-							</tbody>
-						</table>
+						<table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID đơn hàng</th>
+                                    <th>Tên khách hàng</th>
+                                    <th>Ngày đặt hàng</th>
+                                    <th>Nhân Viên</th>
+                                    <th>Tổng tiền</th>
+                                    <th>Trạng thái</th>
+                                    <th>Xem chi tiết đơn hàng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach var="order1" items="${orders}">
+                                    <tr>
+                                        <td>${order1.orderId}</td>
+                                        <td>${order1.shippingInfo[0].shippingName}</td>
+                                        <td>${order1.orderDate}</td>
+                                        <td>${order1.user.userId}</td>
+                                        <td><fmt:formatNumber type="currency" maxFractionDigits="0"
+                                            value="${order1.totalAmount}" currencyCode="VND" /></td>
+                                        <td>${order1.orderStatus.statusName}</td> 
+                                        <td><a class="" type="button" href="/admin/orderDetail/${order1.orderId}"> <i
+                                            class="fas fa-edit"></i></a></td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
 					</div>
 				</div>
 			</div>
 		</div>
 	</main>
+
+
+
 	<!-- Essential javascripts for application to work-->
-	<script src="<c:url value='../assets/admin/js/jquery-3.2.1.min.js'/>"></script>
-	<script src="<c:url value='../assets/admin/js/popper.min.js'/>"></script>
-	<script src="<c:url value='../assets/admin/js/bootstrap.min.js'/>"></script>
+	<script src="<c:url value='/assets/admin/js/jquery-3.2.1.min.js'/>"></script>
+	<script src="<c:url value='/assets/admin/js/popper.min.js'/>"></script>
+	<script src="<c:url value='/assets/admin/js/bootstrap.min.js'/>"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-	<script src="<c:url value='../assets/admin/js/main.js'/>"></script>
+	<script src="<c:url value='/assets/admin/js/main.js'/>"></script>
 	<!-- The javascript plugin to display page loading on top-->
-	<script src="<c:url value='../assets/admin/js/plugins/pace.min.js'/>" /></script>
+	<script src="<c:url value='/assets/admin/js/plugins/pace.min.js'/>" /></script>
 	<!-- Page specific javascripts-->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 	<!-- Data table plugin-->
 	<script type="text/javascript"
-		src="<c:url value='js/plugins/jquery.dataTables.min.js'/>" /></script>
+		src="<c:url value='/assets/admin/js/plugins/jquery.dataTables.min.js'/>" /></script>
 	<script type="text/javascript"
-		src="<c:url value='js/plugins/dataTables.bootstrap.min.js'/>" /></script>
-	<script type="text/javascript">$('#sampleTable').DataTable();</script>
-	<script>
-    function deleteRow(r) {
-      var i = r.parentNode.parentNode.rowIndex;
-      document.getElementById("myTable").deleteRow(i);
-    }
-    jQuery(function () {
-      jQuery(".trash").click(function () {
-        swal({
-          title: "Cảnh báo",
-         
-          text: "Bạn có chắc chắn là muốn xóa đơn hàng này?",
-          buttons: ["Hủy bỏ", "Đồng ý"],
-        })
-          .then((willDelete) => {
-            if (willDelete) {
-              swal("Đã xóa thành công.!", {
-                
-              });
-            }
-          });
-      });
-    });
-    oTable = $('#sampleTable').dataTable();
-    $('#all').click(function (e) {
-      $('#sampleTable tbody :checkbox').prop('checked', $(this).is(':checked'));
-      e.stopImmediatePropagation();
-    });
-
-    //EXCEL
-    // $(document).ready(function () {
-    //   $('#').DataTable({
-
-    //     dom: 'Bfrtip',
-    //     "buttons": [
-    //       'excel'
-    //     ]
-    //   });
-    // });
-
-
-    //Thời Gian
+		src="<c:url value='/assets/admin/js/plugins/dataTables.bootstrap.min.js'/>" /></script>
+	<script type="text/javascript">
+        $('#sampleTable').DataTable();
+        //Thời Gian
     function time() {
       var today = new Date();
       var weekday = new Array(7);
@@ -200,38 +161,6 @@
         return i;
       }
     }
-    //In dữ liệu
-    var myApp = new function () {
-      this.printTable = function () {
-        var tab = document.getElementById('sampleTable');
-        var win = window.open('', '', 'height=700,width=700');
-        win.document.write(tab.outerHTML);
-        win.document.close();
-        win.print();
-      }
-    }
-    //     //Sao chép dữ liệu
-    //     var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
-
-    // copyTextareaBtn.addEventListener('click', function(event) {
-    //   var copyTextarea = document.querySelector('.js-copytextarea');
-    //   copyTextarea.focus();
-    //   copyTextarea.select();
-
-    //   try {
-    //     var successful = document.execCommand('copy');
-    //     var msg = successful ? 'successful' : 'unsuccessful';
-    //     console.log('Copying text command was ' + msg);
-    //   } catch (err) {
-    //     console.log('Oops, unable to copy');
-    //   }
-    // });
-
-
-    //Modal
-    $("#show-emp").on("click", function () {
-      $("#ModalUP").modal({ backdrop: false, keyboard: false })
-    });
-  </script>
+    </script>
 </body>
 </html>

@@ -11,7 +11,7 @@
                             class="btn text-dark">Cập nhật
                             thông tin</a></li>
                     <li class="list-group-item" aria-current="true"><a href="/user/accountChPassword"
-                            class="btn text-dark">Quên
+                            class="btn text-dark">Đổi
                             mật khẩu</a></li>
                 </ul>
             </div>

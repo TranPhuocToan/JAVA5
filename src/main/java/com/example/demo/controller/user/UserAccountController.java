@@ -14,11 +14,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.model.CartEntity;
 import com.example.demo.model.UserEntity;
 import com.example.demo.repository.UserEntityDAO;
+import com.example.demo.service.CartService;
 import com.example.demo.service.ParamService;
 import com.example.demo.service.SessionService;
 import com.example.demo.service.UserService;
+import com.example.demo.service.impl.MailerServiceImpl;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequestMapping("/account")
@@ -28,9 +32,15 @@ public class UserAccountController {
     @Autowired
     ParamService paramService;
     @Autowired
-    UserEntityDAO userDao;
-    @Autowired
     UserService userService;
+    @Autowired
+    CartService cartService;
+    @Autowired
+    UserEntityDAO userEntityDAO;
+    @Autowired
+    MailerServiceImpl mailer;
+
+    @Autowired
 
     @GetMapping("/login")
     public String LoginForm() {
@@ -45,7 +55,7 @@ public class UserAccountController {
         for (UserEntity uEntity : userEntity) {
             if (uEntity.getUserName().equals(us) && uEntity.getPassWord().equals(pw)) {
                 sessionService.set("userSession", uEntity);
-                return "user/index";
+                return "redirect:/user/index";
             }
         }
         model.addAttribute("message", "Thông tin đăng nhập không đúng !!");
@@ -60,20 +70,100 @@ public class UserAccountController {
     @PostMapping("/register")
     public String registerForm(@Validated @ModelAttribute("user") UserEntity us, BindingResult result, Model model) {
         String cfpw = paramService.getString("cfpassword", null);
-        System.out.println(cfpw);
+        List<UserEntity> userEntity = userEntityDAO.findAll();
+        int error = -1;
+        for (UserEntity user : userEntity) {
+            if (us.getUserName().equals(user.getUserName()) || us.getEmail().equals(user.getEmail())) {
+                error++;
+            }
+        }
         if (result.hasErrors()) {
             return "user/register";
         } else if (!cfpw.equals(us.getPassWord())) {
             model.addAttribute("message_cf", "Xác nhận mật khẩu không khớp");
             return "user/register";
+        } else if (error != -1) {
+            model.addAttribute("message", "username hoặc email đã tồn tại !");
+            return "user/register";
         }
-        userDao.save(us);
+        us.setUserRole(false);
+        userService.save(us);
+        CartEntity cart = new CartEntity();
+        cart.setUser(us);
+        cartService.save(cart);
         return "user/login";
     }
 
     @GetMapping("/logout")
     public String logout() {
         sessionService.remove("userSession");
-        return "user/index";
+        return "redirect:/user/index";
     }
+
+    // /account/forgotPass
+    @GetMapping("/forgotPass")
+    public String forgotPass() {
+        return "user/forgotPass";
+    }
+
+    @PostMapping("/forgotPass")
+    public String forgotPass(Model model) {
+        String email = paramService.getString("email", "");
+        List<UserEntity> user = userEntityDAO.findByEmail(email);
+        if (!user.isEmpty()) {
+            for (UserEntity u : user) {
+                if (u.getEmail().equals(email)) {
+                    String toEmail = email;
+                    String subject = "Your Random Password";
+                    String pass = mailer.generateRandomPassword(8);
+                    String body = "Your random password is: " + pass; // Adjust the length
+                                                                      // as needed
+                    mailer.send(toEmail, subject, body);
+
+                    u.setPassWord(pass);
+                    userEntityDAO.save(u);
+                    return "user/login";
+                }
+            }
+        } else {
+            model.addAttribute("message", "email không tồn tại !");
+            return "user/forgotPass";
+        }
+
+        System.out.println(email);
+        return "user/forgotPass";
+    }
+
+    @PostMapping("/changePassword")
+    public String changePassword(Model model) {
+        String oldPass = paramService.getString("oldPass", "");
+        String newPass = paramService.getString("newPass", "");
+        String confirm = paramService.getString("confirm", "");
+        System.out.println(oldPass + " " + newPass + " " + confirm);
+
+        UserEntity userSession = sessionService.get("userSession");
+
+        if (oldPass.equalsIgnoreCase("") || newPass.equals("") || confirm.equals("")) {
+            model.addAttribute("errorMessage", "Vui lòng nhập đầy đủ thông tin !");
+            return "user/accountChPassword";
+        }
+        if (!userSession.getPassWord().equals(oldPass)) {
+            model.addAttribute("errorMessage", "Nhập mật khẩu cũ không đúng !");
+            return "user/accountChPassword";
+        }
+
+        if (!newPass.equals(confirm)) {
+            model.addAttribute("errorMessage", "Nhập mật khẩu xác nhận không đúng !");
+            model.addAttribute("oldPass", oldPass);
+            model.addAttribute("newPass", newPass);
+            return "forward:/user/accountChPassword";
+        }
+
+        UserEntity user = userEntityDAO.findById(userSession.getUserId()).orElseThrow();
+        user.setPassWord(confirm);
+        userEntityDAO.save(user);
+        model.addAttribute("successMessage", "Đổi mật khẩu thành công !");
+        return "user/accountChPassword";
+    }
+
 }

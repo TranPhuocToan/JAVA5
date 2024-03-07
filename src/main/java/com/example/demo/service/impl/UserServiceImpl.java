@@ -1,7 +1,6 @@
 package com.example.demo.service.impl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,4 +22,15 @@ public class UserServiceImpl implements UserService {
         return userEntityDAO.findByUserName(username);
     }
 
+    @Override
+    public UserEntity save(UserEntity entity) {
+        return userEntityDAO.save(entity);
+    }
+
+    @Override
+    public UserEntity update(UserEntity entity) {
+        entity.getEmail();
+        entity.getFullName();
+        return userEntityDAO.save(entity);
+    }
 }

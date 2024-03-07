@@ -6,7 +6,7 @@
 
 			<head>
 				<meta charset="UTF-8">
-				<title>Insert title here</title>
+				<title>Quản Lý Tài Khoản</title>
 				<!-- Main CSS-->
 				<link rel="stylesheet" type="text/css" href="<c:url value='../assets/admin/css/main.css'/>" />
 				<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
@@ -65,23 +65,23 @@
 												<thead>
 													<tr>
 														<th style="width: 65px">Số Thứ Tự</th>
-														<th>Email</th>
+														<th>Tên người dùng</th>
 														<th>Phân quyền</th>
 														<th>Chức năng</th>
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
-														<c:forEach var="account" items="" varStatus="loop">
-															<td>1</td>
-															<td>1</td>
-															<td>admin</td>
+														<c:forEach var="account" items="${user}" varStatus="loop">
+															<td>${account.userId}</td>
+															<td>${account.userName}</td>
+															<td>${account.userRole ? 'Admin' : 'Người dùng'}</td>
 															<td class="table-td-center"><a
 																	class="btn btn-primary btn-sm trash" type="button"
-																	title="Xóa" onclick="confirmDelete('1')"> <i
+																	title="Xóa" onclick="confirmDelete('${account.userId}')"> <i
 																		class="fas fa-trash-alt"></i>
 																</a> <a class="btn btn-primary btn-sm edit"
-																	type="button" href="/account/edit/1"> <i
+																	type="button" href="/account/edit/${account.userId}"> <i
 																		class="fas fa-edit"></i>
 																</a></td>
 													</tr>
