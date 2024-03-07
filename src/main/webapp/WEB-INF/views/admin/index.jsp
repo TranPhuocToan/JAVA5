@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="jakarta.tags.core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,7 @@
 </head>
 <!-- Main CSS-->
 <link rel="stylesheet" type="text/css"
-	href="<c:url value='../assets/admin/css/main.css'/>" />
+	href="../../../assets/admin/css/main.css" />
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 <!-- or -->
@@ -109,18 +110,26 @@
 										<th>ID đơn hàng</th>
 										<th>Tên khách hàng</th>
 										<th>Ngày đặt hàng</th>
+										<th>Nhân Viên</th>
 										<th>Tổng tiền</th>
 										<th>Trạng thái</th>
+										<th>Xem chi tiết đơn hàng</th>
+										<th>Chức Năng</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="item" items="${items}">
+									<c:forEach var="order1" items="${orders}">
 										<tr>
-											<td><c:out value="${item.order_id}" /></td>
-											<td><c:out value="${item.customers.name}" /></td>
-											<td><c:out value="${item.order_date}" /></td>
-											<td><c:out value="${item.total_price}" /> đ</td>
-											<td><c:out value="${item.status}" /></td>
+											<td>${order1.orderId}</td>
+											<td>${order1.shippingInfo[0].shippingName}</td>
+											<td>${order1.orderDate}</td>
+											<td>${order1.user.userId}</td>
+											<td><fmt:formatNumber type="currency" maxFractionDigits="0"
+												value="${order1.totalAmount}" currencyCode="VND" /></td>
+											<td>${order1.orderStatus.statusName}</td> 
+											<td><a class="" type="button" href="/admin/orderDetail/${order1.orderId}"> <i
+												class="fas fa-edit"></i></a></td>
+											<td><a href="/admin/orderStatus/${order1.orderId}" class="" type="button"><i class="fas fa-edit"></i></a></td>	
 										</tr>
 									</c:forEach>
 								</tbody>

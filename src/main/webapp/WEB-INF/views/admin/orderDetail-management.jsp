@@ -1,26 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="jakarta.tags.core" prefix="c"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản Lý Thương Hiệu</title>
-    <!-- Main CSS-->
-    <link rel="stylesheet" type="text/css" href="<c:url value='../assets/admin/css/main.css'/>" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <!-- or -->
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-    <!-- Font-icon css-->
-    <link rel="stylesheet" type="text/css"
-        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<meta charset="UTF-8">
+<title>Quản Lý Chi Tiết Đơn Hàng</title>
+<!-- Main CSS-->
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/assets/admin/css/main.css'/>" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+<!-- or -->
+<link rel="stylesheet"
+	href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+<!-- Font-icon css-->
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 </head>
 <body onload="time()" class="app sidebar-mini rtl">
 	<!-- Navbar-->
@@ -33,7 +36,7 @@
 		<div class="app-title">
 			<ul class="app-breadcrumb breadcrumb side">
 				<li class="breadcrumb-item active"><a href="#"><b>Danh
-							sách thương hiệu</b></a></li>
+							sách chi tiết đơn hàng</b></a></li>
 			</ul>
 			<div id="clock"></div>
 		</div>
@@ -42,11 +45,6 @@
 				<div class="tile">
 					<div class="tile-body">
 						<div class="row element-button">
-							<div class="col-sm-2">
-
-								<a class="btn btn-add btn-sm" href="/brand/form-brand"
-									title="Thêm"><i class="fas fa-plus"></i> Tạo mới thương hiệu</a>
-							</div>
 							<div class="col-sm-2">
 								<a class="btn btn-delete btn-sm print-file" type="button"
 									title="In" onclick="myApp.printTable()"><i
@@ -68,26 +66,34 @@
 									class="fas fa-file-pdf"></i> Xuất PDF</a>
 							</div>
 						</div>
-						<table class="table table-hover table-bordered" id="sampleTable">
-							<thead>
-								<tr>
-									<th>ID thương hiệu</th>
-									<th>Tên sản phẩm</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="brand" items="${brand}">
-									<tr>
-										<td>${brand.brandId}</td>
-										<td>${brand.brandName}</td>
-										<td><a class="btn btn-primary btn-sm edit" type="button"
-											href="/brand/edit/${brand.brandId}"> <i
-												class="fas fa-edit"></i>
-										</a>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
+						<table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID đơn hàng</th>
+                                    <th>Tên khách hàng</th>
+                                    <th>Ngày đặt hàng</th>
+                                    <th>Nhân Viên</th>
+                                    <th>Tổng tiền</th>
+                                    <th>Trạng thái</th>
+                                    <th>Xem chi tiết đơn hàng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach var="order1" items="${orders}">
+                                    <tr>
+                                        <td>${order1.orderId}</td>
+                                        <td>${order1.shippingInfo[0].shippingName}</td>
+                                        <td>${order1.orderDate}</td>
+                                        <td>${order1.user.userId}</td>
+                                        <td><fmt:formatNumber type="currency" maxFractionDigits="0"
+                                            value="${order1.totalAmount}" currencyCode="VND" /></td>
+                                        <td>${order1.orderStatus.statusName}</td> 
+                                        <td><a class="" type="button" href="/admin/orderDetail/${order1.orderId}"> <i
+                                            class="fas fa-edit"></i></a></td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
 					</div>
 				</div>
 			</div>
@@ -97,22 +103,22 @@
 
 
 	<!-- Essential javascripts for application to work-->
-	<script src="<c:url value='../assets/admin/js/jquery-3.2.1.min.js'/>"></script>
-	<script src="<c:url value='../assets/admin/js/popper.min.js'/>"></script>
-	<script src="<c:url value='../assets/admin/js/bootstrap.min.js'/>"></script>
+	<script src="<c:url value='/assets/admin/js/jquery-3.2.1.min.js'/>"></script>
+	<script src="<c:url value='/assets/admin/js/popper.min.js'/>"></script>
+	<script src="<c:url value='/assets/admin/js/bootstrap.min.js'/>"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-	<script src="<c:url value='../assets/admin/js/main.js'/>"></script>
+	<script src="<c:url value='/assets/admin/js/main.js'/>"></script>
 	<!-- The javascript plugin to display page loading on top-->
-	<script src="<c:url value='../assets/admin/js/plugins/pace.min.js'/>" /></script>
+	<script src="<c:url value='/assets/admin/js/plugins/pace.min.js'/>" /></script>
 	<!-- Page specific javascripts-->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 	<!-- Data table plugin-->
 	<script type="text/javascript"
-		src="<c:url value='../assets/admin/js/plugins/jquery.dataTables.min.js'/>" /></script>
+		src="<c:url value='/assets/admin/js/plugins/jquery.dataTables.min.js'/>" /></script>
 	<script type="text/javascript"
-		src="<c:url value='../assets/admin/js/plugins/dataTables.bootstrap.min.js'/>" /></script>
+		src="<c:url value='/assets/admin/js/plugins/dataTables.bootstrap.min.js'/>" /></script>
 	<script type="text/javascript">
         $('#sampleTable').DataTable();
         //Thời Gian

@@ -72,26 +72,26 @@
 								<tr>
 									<th>ID đơn hàng</th>
 									<th>Khách hàng</th>
-									<th>Tên sản phẩm</th>
-									<th>Giá tiền</th>
-									<th>Số lượng</th>
-									<th>Tổng tiền</th>
+                  <th>Tên Sản Phẩm</th>
+									<th>Ngày Đặt Hàng</th>
+									<th>Tổng Tiền</th>
+									<th>Số Lượng</th>
 									<th>Ngày đặt hàng</th>
 									<th>Tình trạng</th>
 								</tr>
 
 							</thead>
 							<tbody>
-								<c:forEach var="order" items="${order}">
+								<c:forEach var="ordersDetail" items="${ordersDetails}">
 									<tr>
-										<td>${orderDetail.orders.order_id}</td>
-										<td>${orderDetail.orders.customers.name}</td>
-									 	<td>${orderDetail.products.product_name}</td>
-										<td>${orderDetail.products.product_price}</td>
-										<td>${orderDetail.quantity_ordered}</td>
-										<td>${orderDetail.orders.total_price}</td>
-										<td>${orderDetail.orders.order_date}</td>
-										<td>${orderDetail.orders.status}</td>
+										<td>${ordersDetail.order.orderId}</td>
+										<td>${ordersDetail.order.shippingName}</td>
+                    <td>${ordersDetail.productDetial.productName}</td>
+									 	<td>${ordersDetail.order.orderDate}</td>
+                    <td>${ordersDetail.price}</td>
+										<td>${ordersDetail.quantity}</td>
+										<td>${ordersDetail.order.totalAmount}</td>
+										<td>${ordersDetail.order.orderStatus}</td>
 									</tr>
 								</c:forEach>
 

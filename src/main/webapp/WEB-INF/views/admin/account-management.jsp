@@ -65,7 +65,7 @@
 												<thead>
 													<tr>
 														<th style="width: 65px">Số Thứ Tự</th>
-														<th>Email</th>
+														<th>Tên người dùng</th>
 														<th>Phân quyền</th>
 														<th>Chức năng</th>
 													</tr>
